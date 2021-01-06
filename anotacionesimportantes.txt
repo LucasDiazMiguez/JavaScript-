@@ -1,0 +1,2 @@
+PROMPT:
+Siempre lo que recibe lo trata como un string
