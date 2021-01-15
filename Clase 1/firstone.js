@@ -1,35 +1,35 @@
-// var x = prompt("ingrese su nombre");
-// var y = prompt("ingrese su apellido");
+ var x = prompt("ingrese su nombre");
+ var y = prompt("ingrese su apellido");
 
-// console.log("su nombre es %s %s",x,y);
-
+console.log("su nombre es %s %s",x,y);
+alert("su nombre es"+"  "+ x +"  "+y);
 alert("Calculadora");
 
 x = prompt("ingrese el digito 1");
+//Así podría corroborar si lo que ingreso es un numero?
+// if(typeof(Number(x))!='Number')
+// {
+//     alert(no es un digito)    
+// }
+ope = prompt("ingrese la operación que desea realizar ( +,-,*,%)");
 y = prompt("ingrese el digito 2");
-a = Number("x");
-b = Number("y");
 var resultado;
-resultado =Number( a + b) ;
+console.log(ope);
+switch (ope) {
+    case '*':
+        resultado = Number(x) * Number(y);
+        break;
+    case '/':
+        resultado = Number(x) / Number(y);
+        break;
+    case '+':
+        resultado = Number(x) + Number(y);
+        break;
+    case '-':
+        resultado = Number(x) - Number(y);
+        break;
+    default:
+        alert("metiste otra opcion");
+}
+console.log(resultado);
 alert(resultado);
-
-// console.log(typeof x +  typeof y +  typeof a +  + typeof b + );
-// ope = prompt("ingrese la operación que desea realizar ( +,-,*,%)");
-// switch (ope) {
-//     case '-':
-//         resultado = a * b;
-//         break;
-//     case '/':
-//         resultado = a / b;
-//         break;
-//     case '+':
-//         resultado = a + b;
-//         break;
-//     case '-':
-//         resultado = a - b;
-//         break;
-//     default:
-//         alert("metiste otra opcion");
-//         }
-// alert(resultado);
-// console.log(resultado);
