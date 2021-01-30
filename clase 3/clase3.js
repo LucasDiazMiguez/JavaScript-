@@ -19,5 +19,8 @@ for(i=0;i<7;i++)
     if(i%2!=0)
     {
         alert( dias[i] +"   pertenece a un día par");
+    }else if(i==6)
+    {
+        alert("Es domingooo");
     }
 }

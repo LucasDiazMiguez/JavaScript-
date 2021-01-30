@@ -1,0 +1,29 @@
+{
+  "name": "probando-sass",
+  "version": "1.0.0",
+  "description": "probando sass",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build-css": "node-sass --include-path scss scss/mi-scss.scss css/stylesheet.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasDiazMiguez/ProyectodeCODERHOUSE.git"
+  },
+  "keywords": [
+    "keywords"
+  ],
+  "author": "Lucas Diaz Miguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LucasDiazMiguez/ProyectodeCODERHOUSE/issues"
+  },
+  "homepage": "https://github.com/LucasDiazMiguez/ProyectodeCODERHOUSE#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0",
+    "nodemon": "^2.0.6",
+    "prettier": "2.1.2"
+  }
+}

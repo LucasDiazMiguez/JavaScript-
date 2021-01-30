@@ -13,3 +13,7 @@ Meaning: The block of code is aware of the variable, but it cannot be used until
 
   <link rel="preload" href="style.css" as="style">
   <link rel="preload" href="main.js" as="script">
+
+
+
+localstorage solo acepta  carácteres, no objetos. O sea convierte todo en string.
