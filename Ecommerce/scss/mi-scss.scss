@@ -1,4 +1,8 @@
+// sass --watch scss/mi-scss.scss:css/stylesheet.css
+
+
 /*Variables de colores*/
+
 $negro:Black;
 $blanco:white;
 $colorfondobotonfachero: rgb(2, 41, 117);
@@ -93,7 +97,7 @@ $padding10px: 5px*2;
 
 
 /*-----------------------------------ANIMACIÓN--------------------------------------*/
-@keyframes boton-fachero {
+@keyframes boton-faaaachero {
     from {
         background-color: $negro;
         height: 0;
@@ -215,19 +219,34 @@ div.galeria-caja-de-item a {
             color: gray;
             text-align: center;
             position: absolute;
-            // top: 190px;
+            top: 190px;
             // left: 10px;
         }
     }
-
-    .galeria-precio {
-        color: #f00;
-        font-weight: bold;
-        border-radius: 10px;
-        position: relative;
-        margin: 2px;
-        top: 30px;
-        padding: 10px;
+    div{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        button{
+            color: white;
+            background-color: #000000;
+            font-weight: bold;
+            border-radius: 10px;
+            position: relative;
+            padding: 5px;
+        }
+        .galeria-precio {
+            color: #f00;
+            font-weight: bold;
+            border-radius: 10px;
+            position: relative;
+            margin: 2px;
+            padding-top: 10px;
+            white-space: nowrap;
+        }
+        
     }
 }
 
