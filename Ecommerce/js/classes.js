@@ -18,6 +18,6 @@ let producto2= new Products(15999,20,"imagenes/imagenesInicio/gabinetegamer.webp
 
 let producto3= new Products(150999,10,"imagenes/imagenesInicio/GPU.webp","Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr","Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr",000000003,"nvidia");
  
-let producto4= new Products(26999,15,"imagenes/imagenesInicio/motherboardbarata-destacado.webp","Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4","Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4",000000004,"gigabyte");
+let producto4= new Products(26999,16,"imagenes/imagenesInicio/motherboardbarata-destacado.webp","Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4","Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4",000000004,"gigabyte");
  
 console.log(producto1);
