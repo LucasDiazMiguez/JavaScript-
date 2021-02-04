@@ -1,42 +1,41 @@
-import { dataBase } from './classes.js';
-console.log(dataBase);
-
-//--------------------------------------------------------------------------
-// class Products {
-//     constructor(price,stock,image,description,name,id,marca) {
-//       this.price = price;
-//       this.stock= stock;
-//       this.image=image;
-//       this.name=name;
-//       this.id=id;
-//       this.marca=marca;
-//       this.description=description;
-//     }
-//   }
-
-// let producto1= new Products(4999,30,"imagenes/imagenesInicio/camara-destacada.webp","Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono","Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono","000000001","none");
-
-// let producto2= new Products(15999,20,"imagenes/imagenesInicio/gabinetegamer.webp","Gabinete Sentey Z20 Lite - Led Rgb","Gabinete Sentey Z20 Lite - Led Rgb","000000002","sentey");
-
-// let producto3= new Products(150999,10,"imagenes/imagenesInicio/GPU.webp","Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr","Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr","000000003","nvidia");
- 
-// let producto4= new Products(26999,16,"imagenes/imagenesInicio/motherboardbarata-destacado.webp","Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4","Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4","000000004","gigabyte");
- 
-
-// let dataBase=[producto1,producto2,producto3,producto4];
-
-//--------------------------------------------------------------------------
+import  dataBase from './classes.js';
 
 let cardItems=dataBase;
-console.log(cardItems);
+// console.log(cardItems);
 
-// let carrito=[];
+// // let carrito=[];
 
-if (localStorage.getItem("carrito"!=null)) {
-    carrito=JSON.parse(localStorage.getItem("carrito"));
+// if (localStorage.getItem("carrito"!=null)) {
+//     carrito=JSON.parse(localStorage.getItem("carrito"));
+// }
+
+// //loading the data into the "carusel"
+
+let card='';
+for (let i = 0; i < cardItems.length; i++) {
+    // console.log(dataBase[i]);
+    console.log(cardItems.length);   
+    let card=document.getElementById("cardCarusel").innerHTML;
+    // console.log(card);
+    if (cardItems[i].stock>0) {
+
+        document.getElementById("cardCarusel").innerHTML= card+`
+        <div class="col-lg-3 col-md-6 galeria-caja-de-item">
+        <a href="">
+        <div class="galeria-foto-titulo">
+        <img src="${cardItems[i].image}"
+        alt="${cardItems[i].description}">
+        <h6 class="flotante">${cardItems[i].name}</h6>
+        </div>
+        <div class="price-shop">
+        <h6 class="galeria-precio"> ${cardItems[i].price} </h6>
+        <button value="">agregar al carrito</button>
+        </div>
+        </a>
+        </div>`
+        
+    }
+    
 }
 
-//loading the data into the "carusel"
-
-
-
+//ahora hay que hacerlo para el otro
