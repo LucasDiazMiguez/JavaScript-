@@ -6,16 +6,16 @@
     <title>compras</title>
     <meta name="description" content="Podrás ver tu carrito donde están todas tus posibles compras">
     <link rel="Shortcut Icon" href="imagenes/Rovel.png" type="image/jpg">
-    <script type="module" src="js/main.js"></script>
-
+    
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/wow.min.js"></script>
     <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.css">
     <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/wow.min.js"></script>
+   
     <link rel="stylesheet" href="css/stylesheet.css">
     <script src="https://kit.fontawesome.com/357d076d0b.js" crossorigin="anonymous"></script>
     <meta name="keywords" content=" Compras,Productos, carrito,Brand" />
@@ -168,168 +168,9 @@
     </header>
     <div class="container contenedor-de-filas" id="contenedor-de-filas-carrito">
         <div class="row align-items-center fila__producto__titulo ">
-            <h4>Productos en su carrito:</h4>
+        <h4>Productos en su carrito:</h4>
         </div>
-        <div class="row justify-content-around align-items-center fila__producto ">
-            <div class="col-lg-3 fila__producto__eliminar__ignorar">
-                <img src="imagenes/imagenesCompras/579976-radeon-6900xt-6800xt-1260x709.webp" alt=" AMD Radeon 6800XT">
-                <div class="checkboxes">
-                    <div class="checkbox-sub">
-                        <label for="eliminar">Eliminar</label>
-                        <input type="checkbox" name="eliminar">
-                    </div>
-                    <div class="checkbox-sub">
-                        <label for="ignorar">Ignorar</label>
-                        <input type="checkbox" name="ignorar">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <h5> AMD Radeon 6800XT</h5>
-            </div>
-            <div class="col-lg-3 fila__producto__numero__precio">
-                <input type="number" name="cantidad" id="cantidad--de--productos">
-                <!-- <div class="button-minus-plus">
-                    <button>
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button>
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div> -->
-                <strong class="price"> Precio: 90000$ </strong>
-            </div>
-
-        </div>
-        <div class="row justify-content-around align-items-center fila__producto ">
-            <div class="col-lg-3 fila__producto__eliminar__ignorar">
-                <img src="imagenes/imagenesCompras/Auriculares Gamer Corsair Void Pro Inalambrico 7.1 Rgb.webp" alt="Auriculares Gamer Corsair Void Pro Inalambrico 7.1 Rgb">
-                <div class="checkboxes">
-                    <div class="checkbox-sub">
-                        <label for="eliminar">Eliminar</label>
-                        <input type="checkbox" name="eliminar">
-                    </div>
-                    <div class="checkbox-sub">
-                        <label for="ignorar">Ignorar</label>
-                        <input type="checkbox" name="ignorar">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <h5> Auriculares Gamer Corsair Void Pro Inalambrico 7.1 Rgb</h5>
-            </div>
-            <div class="col-lg-3 fila__producto__numero__precio">
-                <input type="number" name="cantidad" id="cantidad--de--productos">
-                <strong class="price"> Precio: 24958$ </strong>
-            </div>
-
-        </div>
-        <div class="row justify-content-around align-items-center fila__producto ">
-            <div class="col-lg-3 fila__producto__eliminar__ignorar">
-                <img src="imagenes/imagenesCompras/Memoria Ram Corsair Vengeance Rgb Pro 2x8 16gb 3200mhz Whitewebp.webp"
-                    alt="Memoria Ram Corsair Vengeance Rgb Pro 2x8 16gb 3200mhz White">
-                <div class="checkboxes">
-                    <div class="checkbox-sub">
-                        <label for="eliminar">Eliminar</label>
-                        <input type="checkbox" name="eliminar">
-                    </div>
-                    <div class="checkbox-sub">
-                        <label for="ignorar">Ignorar</label>
-                        <input type="checkbox" name="ignorar">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <h5>Memoria Ram Corsair Vengeance Rgb Pro 2x8 16gb 3200mhz White</h5>
-            </div>
-            <div class="col-lg-3 fila__producto__numero__precio">
-                <input type="number" name="cantidad" id="cantidad--de--productos">
-                <strong class="price"> Precio: 21000$ </strong>
-            </div>
-
-        </div>
-        <div class="row justify-content-around align-items-center fila__producto ">
-            <div class="col-lg-3 fila__producto__eliminar__ignorar">
-                <img src="imagenes/imagenesCompras/Mouse de juego HyperX FPS Pro Pulsefire negro.webp" alt="Mouse de juego HyperX FPS Pro Pulsefire negro">
-                <div class="checkboxes">
-                    <div class="checkbox-sub">
-                        <label for="eliminar">Eliminar</label>
-                        <input type="checkbox" name="eliminar">
-                    </div>
-                    <div class="checkbox-sub">
-                        <label for="ignorar">Ignorar</label>
-                        <input type="checkbox" name="ignorar">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <h5>Mouse de juego HyperX FPS Pro Pulsefire negro</h5>
-            </div>
-            <div class="col-lg-3 fila__producto__numero__precio">
-                <input type="number" name="cantidad" id="cantidad--de--productos">
-                <strong class="price"> Precio: 6499$ </strong>
-            </div>
-
-        </div>
-        <div class="row justify-content-around align-items-center fila__producto ">
-            <div class="col-lg-3 fila__producto__eliminar__ignorar">
-                <img src="imagenes/imagenesCompras/Mouse Gamer Hyperx Pulsefire Surge Rgb 16000dpi Led Rgb Ambidiestro Gtia Oficial Full.webp"
-                    alt="Mouse Gamer Hyperx Pulsefire Surge Rgb 16000dpi Led Rgb Ambidiestro Gtia Oficial Full">
-                <div class="checkboxes">
-                    <div class="checkbox-sub">
-                        <label for="eliminar">Eliminar</label>
-                        <input type="checkbox" name="eliminar">
-                    </div>
-                    <div class="checkbox-sub">
-                        <label for="ignorar">Ignorar</label>
-                        <input type="checkbox" name="ignorar">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <h5>Mouse Gamer Hyperx Pulsefire Surge Rgb 16000dpi Led Rgb Ambidiestro Gtia Oficial Full</h5>
-            </div>
-            <div class="col-lg-3 fila__producto__numero__precio">
-                <input type="number" name="cantidad" id="cantidad--de--productos">
-                <strong class="price"> Precio: 27999$ </strong>
-            </div>
-
-        </div>
-        <div class="row justify-content-around align-items-center fila__producto ">
-            <div class="col-lg-3 fila__producto__eliminar__ignorar">
-                <img src="imagenes/imagenesCompras/tecladhyperx.webp"
-                    alt="Teclado gamer HyperX Alloy Origins QWERTY Red español latinoamerica de color negro con luz RGB">
-                <div class="checkboxes">
-                    <div class="checkbox-sub">
-                        <label for="eliminar">Eliminar</label>
-                        <input type="checkbox" name="eliminar">
-                    </div>
-                    <div class="checkbox-sub">
-                        <label for="ignorar">Ignorar</label>
-                        <input type="checkbox" name="ignorar">
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <h5>Teclado gamer HyperX Alloy Origins QWERTY Red español latinoamérica de color negro con luz RGB</h5>
-            </div>
-            <div class="col-lg-3 fila__producto__numero__precio">
-                <input type="number" name="cantidad" id="cantidad--de--productos">
-                <strong class="price"> Precio: 14950$ </strong>
-            </div>
-
-        </div>
-        <div class="row justify-content-around align-items-center fila__confirmar__pago">
-            <div class="col-lg-5">
-            </div>
-            <div class="col-lg-3">
-                <h5>TOTAL: $179000.-</h5>
-            </div>
-            <div class="col-lg-3">
-                <input type="submit" value="Confirmar compra">
-            </div>
-
-        </div>
+    </div>
     </div>
     <footer>
         <div class="container footer-container align-items-center">
@@ -367,7 +208,172 @@
             </div>
         </div>
     </footer>
+<script  src="js/main.js"></script>
 
 </body>
 
 </html>
+<!-- 
+        <div class="row align-items-center fila__producto__titulo ">
+    <h4>Productos en su carrito:</h4>
+</div>
+<div class="row justify-content-around align-items-center fila__producto ">
+    <div class="col-lg-3 fila__producto__eliminar__ignorar">
+        <img src="imagenes/imagenesCompras/579976-radeon-6900xt-6800xt-1260x709.webp" alt=" AMD Radeon 6800XT">
+        <div class="checkboxes">
+            <div class="checkbox-sub">
+                <label for="eliminar">Eliminar</label>
+                <input type="checkbox" name="eliminar">
+            </div>
+            <div class="checkbox-sub">
+                <label for="ignorar">Ignorar</label>
+                <input type="checkbox" name="ignorar">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <h5> AMD Radeon 6800XT</h5>
+    </div>
+    <div class="col-lg-3 fila__producto__numero__precio">
+        <input type="number" name="cantidad" id="cantidad--de--productos">
+        <div class="button-minus-plus">
+            <button>
+                <i class="fas fa-minus"></i>
+            </button>
+            <button>
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        <strong class="price"> Precio: 90000$ </strong>
+    </div>
+
+</div>
+<div class="row justify-content-around align-items-center fila__producto ">
+    <div class="col-lg-3 fila__producto__eliminar__ignorar">
+        <img src="imagenes/imagenesCompras/Auriculares Gamer Corsair Void Pro Inalambrico 7.1 Rgb.webp" alt="Auriculares Gamer Corsair Void Pro Inalambrico 7.1 Rgb">
+        <div class="checkboxes">
+            <div class="checkbox-sub">
+                <label for="eliminar">Eliminar</label>
+                <input type="checkbox" name="eliminar">
+            </div>
+            <div class="checkbox-sub">
+                <label for="ignorar">Ignorar</label>
+                <input type="checkbox" name="ignorar">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <h5> Auriculares Gamer Corsair Void Pro Inalambrico 7.1 Rgb</h5>
+    </div>
+    <div class="col-lg-3 fila__producto__numero__precio">
+        <input type="number" name="cantidad" id="cantidad--de--productos">
+        <strong class="price"> Precio: 24958$ </strong>
+    </div>
+
+</div>
+<div class="row justify-content-around align-items-center fila__producto ">
+    <div class="col-lg-3 fila__producto__eliminar__ignorar">
+        <img src="imagenes/imagenesCompras/Memoria Ram Corsair Vengeance Rgb Pro 2x8 16gb 3200mhz Whitewebp.webp"
+            alt="Memoria Ram Corsair Vengeance Rgb Pro 2x8 16gb 3200mhz White">
+        <div class="checkboxes">
+            <div class="checkbox-sub">
+                <label for="eliminar">Eliminar</label>
+                <input type="checkbox" name="eliminar">
+            </div>
+            <div class="checkbox-sub">
+                <label for="ignorar">Ignorar</label>
+                <input type="checkbox" name="ignorar">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <h5>Memoria Ram Corsair Vengeance Rgb Pro 2x8 16gb 3200mhz White</h5>
+    </div>
+    <div class="col-lg-3 fila__producto__numero__precio">
+        <input type="number" name="cantidad" id="cantidad--de--productos">
+        <strong class="price"> Precio: 21000$ </strong>
+    </div>
+
+</div>
+<div class="row justify-content-around align-items-center fila__producto ">
+    <div class="col-lg-3 fila__producto__eliminar__ignorar">
+        <img src="imagenes/imagenesCompras/Mouse de juego HyperX FPS Pro Pulsefire negro.webp" alt="Mouse de juego HyperX FPS Pro Pulsefire negro">
+        <div class="checkboxes">
+            <div class="checkbox-sub">
+                <label for="eliminar">Eliminar</label>
+                <input type="checkbox" name="eliminar">
+            </div>
+            <div class="checkbox-sub">
+                <label for="ignorar">Ignorar</label>
+                <input type="checkbox" name="ignorar">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <h5>Mouse de juego HyperX FPS Pro Pulsefire negro</h5>
+    </div>
+    <div class="col-lg-3 fila__producto__numero__precio">
+        <input type="number" name="cantidad" id="cantidad--de--productos">
+        <strong class="price"> Precio: 6499$ </strong>
+    </div>
+
+</div>
+<div class="row justify-content-around align-items-center fila__producto ">
+    <div class="col-lg-3 fila__producto__eliminar__ignorar">
+        <img src="imagenes/imagenesCompras/Mouse Gamer Hyperx Pulsefire Surge Rgb 16000dpi Led Rgb Ambidiestro Gtia Oficial Full.webp"
+            alt="Mouse Gamer Hyperx Pulsefire Surge Rgb 16000dpi Led Rgb Ambidiestro Gtia Oficial Full">
+        <div class="checkboxes">
+            <div class="checkbox-sub">
+                <label for="eliminar">Eliminar</label>
+                <input type="checkbox" name="eliminar">
+            </div>
+            <div class="checkbox-sub">
+                <label for="ignorar">Ignorar</label>
+                <input type="checkbox" name="ignorar">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <h5>Mouse Gamer Hyperx Pulsefire Surge Rgb 16000dpi Led Rgb Ambidiestro Gtia Oficial Full</h5>
+    </div>
+    <div class="col-lg-3 fila__producto__numero__precio">
+        <input type="number" name="cantidad" id="cantidad--de--productos">
+        <strong class="price"> Precio: 27999$ </strong>
+    </div>
+
+</div>
+<div class="row justify-content-around align-items-center fila__producto ">
+    <div class="col-lg-3 fila__producto__eliminar__ignorar">
+        <img src="imagenes/imagenesCompras/tecladhyperx.webp"
+            alt="Teclado gamer HyperX Alloy Origins QWERTY Red español latinoamerica de color negro con luz RGB">
+        <div class="checkboxes">
+            <div class="checkbox-sub">
+                <label for="eliminar">Eliminar</label>
+                <input type="checkbox" name="eliminar">
+            </div>
+            <div class="checkbox-sub">
+                <label for="ignorar">Ignorar</label>
+                <input type="checkbox" name="ignorar">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <h5>Teclado gamer HyperX Alloy Origins QWERTY Red español latinoamérica de color negro con luz RGB</h5>
+    </div>
+    <div class="col-lg-3 fila__producto__numero__precio">
+        <input type="number" name="cantidad" id="cantidad--de--productos">
+        <strong class="price"> Precio: 14950$ </strong>
+    </div>
+
+</div>
+<div class="row justify-content-around align-items-center fila__confirmar__pago">
+    <div class="col-lg-5">
+    </div>
+    <div class="col-lg-3">
+        <h5>TOTAL: $179000.-</h5>
+    </div>
+    <div class="col-lg-3">
+        <input type="submit" value="Confirmar compra">
+    </div>
+
+</div> -->
