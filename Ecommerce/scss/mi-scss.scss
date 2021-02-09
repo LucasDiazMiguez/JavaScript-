@@ -95,7 +95,6 @@ $padding10px: 5px*2;
     }
 }
 
-
 /*-----------------------------------ANIMACIÓN--------------------------------------*/
 @keyframes boton-faaaachero {
     from {
@@ -729,7 +728,6 @@ $height-div-10:($height)/10;
 
 /////////////////////////////////////////////////////////////////////////////////
 
-
 section.lista-de-productos-small {
     .color-de-columna {
         // background: rgb(57, 57, 65);
@@ -770,7 +768,6 @@ section.lista-de-productos-small {
         }
     }
 }
-
 section.lista-de-productos-big {
     background-color: white;
     .boton-desplega-lista {
@@ -867,7 +864,6 @@ section.lista-de-productos-big {
         }
     }
 }
-
 @media screen and (min-width:996px) {
     section.lista-de-productos-small {
         .lista-de-productos-small-container {
@@ -945,7 +941,6 @@ section.lista-de-productos-big {
         }
     }
 }
-
 @media screen and (max-width:996px) {
     section.lista-de-productos-small {
         .lista-de-productos-small-container {

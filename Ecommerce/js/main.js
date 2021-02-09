@@ -57,6 +57,7 @@ console.log(estoyenindex);
 if ((estoyenindex) != null) {
     cardCarusel('filaUno', cardItems);
     cardCarusel('filaDos', cardItems);
+    alert("entre");
 }
 
 
@@ -69,18 +70,39 @@ function AddtoCart(product) {
         shoppingCart.push(product);
         console.log(shoppingCart);
         localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+        //como la página se carga de nuevo se muestra solito el shoppingcart por el llamado que está abajo del todo
     }
 }
-// function deleteProduct(product){
-    
-//     console.log(" antes de eliminar")
-//     console.log(product);
-//     shoppingCart.pop(product);
-//     console.log( "dsps de eliminar" );
-//     console.log(shoppingCart);
-//     // showCarrito(shoppingCart);
-// }   
+function deleteProduct(product){
+    let newShoppingCart=[];
+    let variabledeayuda=0;
+    shoppingCart=JSON.parse(localStorage.getItem("shoppingCart"))
 
+    for (let i = 0; i < shoppingCart.length; i++) {
+        console.log("yo soy producto")
+        console.log(product);
+        console.log("yo soy shoppingcart")
+        console.log(shoppingCart[i]);
+        if (product.id == shoppingCart[i].id) {
+            console.log("no hago nada")
+            variabledeayuda=1;
+        } else {
+            console.log("toy aka");
+            newShoppingCart[i-variabledeayuda]=shoppingCart[i];
+        }        
+    }    
+    console.log( "dsps de eliminar" );
+    console.log(newShoppingCart);
+    localStorage.setItem("shoppingCart", JSON.stringify(newShoppingCart));
+    emptyCarrito();
+    showCarrito(JSON.parse(localStorage.getItem("shoppingCart")));
+}   
+
+
+function emptyCarrito(){
+    let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
+    divDeCompra.innerHTML=``;
+}
 function showCarrito(shoppingCart) {
     if (localStorage.getItem("shoppingCart") != null) {
         shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
