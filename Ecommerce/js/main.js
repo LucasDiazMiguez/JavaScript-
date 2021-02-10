@@ -1,6 +1,6 @@
 // import dataBase from './classes.js';
 class Products {
-    constructor(price, stock, image, description, name, id, marca) {
+    constructor(price, stock, image, description, name, id, marca,cantidad) {
         this.price = price;
         this.stock = stock;
         this.image = image;
@@ -8,20 +8,21 @@ class Products {
         this.id = id;
         this.marca = marca;
         this.description = description;
+        this.cantidad=cantidad;
     }
 }
 
 // console.log("ola");
 
-let producto1 = new Products(4999, 30, "imagenes/imagenesInicio/camara-destacada.webp", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "000000001", "none");
+let producto1 = new Products(4999, 30, "imagenes/imagenesInicio/camara-destacada.webp", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "000000001", "none",0);
 
-let producto2 = new Products(15999, 20, "imagenes/imagenesInicio/gabinetegamer.webp", "Gabinete Sentey Z20 Lite - Led Rgb", "Gabinete Sentey Z20 Lite - Led Rgb", "000000002", "sentey");
+let producto2 = new Products(15999, 20, "imagenes/imagenesInicio/gabinetegamer.webp", "Gabinete Sentey Z20 Lite - Led Rgb", "Gabinete Sentey Z20 Lite - Led Rgb", "000000002", "sentey",0);
 
-let producto3 = new Products(150999, 10, "imagenes/imagenesInicio/GPU.webp", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "000000003", "nvidia");
+let producto3 = new Products(150999, 10, "imagenes/imagenesInicio/GPU.webp", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "000000003", "nvidia",0);
 
-let producto4 = new Products(26999, 16, "imagenes/imagenesInicio/motherboardbarata-destacado.webp", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "000000004", "gigabyte");
+let producto4 = new Products(26999, 16, "imagenes/imagenesInicio/motherboardbarata-destacado.webp", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "000000004", "gigabyte",0);
 
-let producto5 = new Products(3999, 3, "imagenes/imagenesInicio/motherboardbarata-destacado.webp", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "000000004", "gigabyte");
+let producto5 = new Products(3999, 3, "imagenes/imagenesInicio/motherboardbarata-destacado.webp", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "000000004", "gigabyte",0);
 let dataBase = [producto1, producto2, producto3, producto4];
 let cardItems = dataBase;
 
@@ -57,14 +58,19 @@ console.log(estoyenindex);
 if ((estoyenindex) != null) {
     cardCarusel('filaUno', cardItems);
     cardCarusel('filaDos', cardItems);
-    alert("entre");
 }
 
+function addAnotherOne(producto){
+    if(producto.cantidad <= producto.stock)
+    producto.cantidad=producto.cantidad+1;
+    return producto;
+}
 
 function AddtoCart(product) {
     if (product.stock > 0) {
         console.log("im in");
-
+        product.stock=product.stock-1;
+        product=addAnotherOne(product);
 
         console.log("yo soy shopping cart" + shoppingCart)
         shoppingCart.push(product);
@@ -107,6 +113,7 @@ function showCarrito(shoppingCart) {
     if (localStorage.getItem("shoppingCart") != null) {
         shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
     }
+    //se puede juntar en todo en aux
     console.log(shoppingCart);
     let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
     let preciototal=0; 
@@ -164,3 +171,57 @@ if (localStorage.getItem("shoppingCart") != null) {
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
 }
 showCarrito(shoppingCart);
+// const baseDatos = [
+//     { imagen: "23232", tipo: "banner", precio: 900 },
+//     { imagen: "23232", tipo: "poster", precio: 900 },
+//   ];
+//   let acumuladorDeBanners = ``;
+//   let acumuladorDePosters = ``;
+//   for (i = 0; i < baseDatos.length; i++) {
+//     if (baseDatos[i].tipo === "banner") {
+//       acumuladorDeBanners += `
+//       <div>    
+//       <div class="card" style="width: 30rem">
+//       <img
+//       src="${baseDatos[i].imagen}"
+//       class="card-img-top"
+//       alt="..."
+//       />
+//       <div class="card-body">
+//       <h3>${baseDatos[i].tipo}</h3>
+//       <p class="card-text"><h5>$${baseDatos[i].precio}</h5></p>
+//       <button href="#!" class="btn btn-primary" onclick='sumar(${JSON.stringify(
+//         baseDatos[i]
+//       )})'>  :carrito_de_compras: Agregar</button>  
+//       <button href="#" class="btn btn-primary" onclick='borrarProd(${JSON.stringify(
+//         baseDatos[i]
+//       )})'>  :x:Quitar del carrito</button>
+//       </div>
+//       </div>
+//       `;
+//     } else if (baseDatos[i].tipo === "poster") {
+//       acumuladorDePosters += `
+//       <div>    
+//       <div class="card" style="width: 30rem">
+//       <img
+//       src="${baseDatos[i].imagen}"
+//       class="card-img-top"
+//       alt="..."
+//       />
+//       <div class="card-body">
+//       <h3>${baseDatos[i].tipo}</h3>
+//       <p class="card-text"><h5>$${baseDatos[i].precio}</h5></p>
+//       <button href="#!" class="btn btn-primary" onclick='sumar(${JSON.stringify(
+//         baseDatos[i]
+//       )})'>  :carrito_de_compras: Agregar</button>  
+//       <button href="#" class="btn btn-primary" onclick='borrarProd(${JSON.stringify(
+//         baseDatos[i]
+//       )})'>  :x:Quitar del carrito</button>
+//       </div>
+//       </div>
+//       `;
+//     }
+//   }
+//   console.log(acumuladorDeCuardernos);
+//   document.getElementById("productos").innerHTML = acumuladorDeBanners;
+//   document.getElementById("producto-posters").innerHTML = acumuladorDePosters;
