@@ -1,5 +1,6 @@
 
 // import dataBase from './classes.js';
+//hay q arreglar cuando los items son iguales
 class Products {
     constructor(price, stock, image, description, name, id, marca, cantidad) {
         this.price = price;
@@ -41,30 +42,25 @@ function cardCarusel(id, items) {
 
         if (items[i].stock > 0) {
             card.innerHTML = card.innerHTML + `
-            <div class="col-lg-3 col-md-6 galeria-caja-de-item">
-            <a href="">
-            <div class="galeria-foto-titulo">
+            <div class="col-lg-3     col-md-6 box-gallery-item">
+            <div>
             <img src="${items[i].image}"
-            alt="${items[i].description}">
-            <h6 class="flotante">${items[i].name}</h6>
-            </div>
-            <div class="price-shop">
-            <h6 class="galeria-precio"> ${items[i].price}$ </h6>
-           
+                alt="${items[i].description}">
+            <h6 class="item-name">${items[i].name}</h6>
+            <h6 class="cardprice">$ ${items[i].price} </h6>
             <button value=""   onclick='AddtoCart(${JSON.stringify(items[i])})'>agregar al carrito</button>
-            
-            </div>
-            </a>
-            </div>`;
+        </div>
+        </div>
+            `;
         }
     }
 }
 //estoyenindex es una variable flag, o sea si está en  el html carrito es NULL y no ejecuta las dos funciones, si esta en index si las ejecuta
-let estoyenindex = document.getElementById("galeria-de-productos");
+let estoyenindex = document.getElementById("gallery-products");
 console.log(estoyenindex);
 if ((estoyenindex) != null) {
-    cardCarusel('filaUno', dataBaseMasVendidos);
-    cardCarusel('filaDos', dataBaseDestacados);
+    cardCarusel('row-One', dataBaseMasVendidos);
+    cardCarusel('row-Two', dataBaseDestacados);
 }
 
 function addAnotherOne(producto) {
@@ -84,10 +80,12 @@ function AddtoCart(product) {
         localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
         //como la página se carga de nuevo se muestra solito el shoppingcart por el llamado que está abajo del todo
     }
+    cardlength();
 }
 function deleteProduct(product) {
     let newShoppingCart = [];
     let variabledeayuda = 0;
+    
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
 
     for (let i = 0; i < shoppingCart.length; i++) {
@@ -105,14 +103,18 @@ function deleteProduct(product) {
     }
     console.log("dsps de eliminar");
     console.log(newShoppingCart);
+    shoppingCart=newShoppingCart;
     localStorage.setItem("shoppingCart", JSON.stringify(newShoppingCart));
     showCarrito(JSON.parse(localStorage.getItem("shoppingCart")));
+    cardlength();
 }
-
-
-function showCarrito(shoppingCart) {
+function cardlength(){
     let aux=shoppingCart.length; 
     $("#cart-icon-b").text("Carrito "+aux);
+}
+
+function showCarrito(shoppingCart) {
+    cardlength();
     if (localStorage.getItem("shoppingCart") != null) {
         shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
         console.log(shoppingCart);

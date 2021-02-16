@@ -119,140 +119,79 @@ $padding10px: 5px*2;
 }
 
 @keyframes slide-to-the-left-30 {
-    0% {
+    from {
         width: 0;
     }
 
-    20% {
-        width: 6vh;
-    }
-
-    40% {
-        width: 12vh;
-    }
-
-    60% {
-        width: 18vh;
-    }
-
-    80% {
-        width: 24vh;
-    }
-
-    100% {
+    to {
         width: 30vh;
     }
 }
 
 @keyframes slide-to-the-left-20 {
-    0% {
+    from {
         width: 0;
     }
 
-    20% {
-        width: 4vh;
-    }
-
-    40% {
-        width: 8vh;
-    }
-
-    60% {
-        width: 12vh;
-    }
-
-    80% {
-        width: 16vh;
-    }
-
-    100% {
+    to {
         width: 20vh;
     }
 }
 
-div.galeria-caja-de-item a {
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-    color: $negro;
-    text-decoration: none;
-    background-color: $blanco;
-    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2),
-        0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-top: 25px;
-    margin-bottom: 30px;
+.box {
+    //no es de fila principal
+    box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.73);
     border-radius: 10px;
-    overflow: hidden;
 
-    &:hover {
-        transition: 0.2s;
-        scale: 1.05;
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
-    }
-
-    .galeria-foto-titulo {
-        position: relative;
-
-        img {
-            margin-bottom: 15px;
-            width: 180px;
-            height: 180px;
-            object-fit: contain;
-            object-position: center;
-            border-color: black;
-            border-width: 0 0 2px 0;
-            border-style: solid;
-
-            &:hover {
-                transition: 0.5s;
-                scale: 1.2;
-                border-style: none;
+    .box-gallery-item {
+        div {
+            height: 100%;
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            height: 400px;
+            margin: 30px 10px;
+            padding: 5px;
+            color: $negro;
+            align-items: center;
+            box-shadow: 0 8px 16px 0 rgba(70, 0, 0, 0.541);
+            border-radius: 5px;
+            img {
+                width: 160px;
+                height: 160px;
+                object-fit: contain;
+                border-color: black;
+                border-width: 0 0 2px 0;
+                border-style: solid;
             }
+
+            button {
+                position: absolute;
+                top: 350px;
+                color: white;
+                background-color: #000000;
+                font-weight: bold;
+                border-radius: 10px;
+            }
+            .cardprice {
+                font-weight: bold;
+                color:Red;
+                position: absolute;
+                top: 330px;
+            }
+
+            .item-name {
+                position: relative;
+                top: 20px;
+                font-size: medium;
+                color: gray;
+                text-align: center;
+            }
+
         }
-
-        .flotante {
-            padding: 5px;
-            font-size: medium;
-            color: gray;
-            text-align: center;
-            position: absolute;
-            top: 190px;
-            // left: 10px;
-        }
-    }
-
-    div {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: center;
-
-        button {
-            color: white;
-            background-color: #000000;
-            font-weight: bold;
-            border-radius: 10px;
-            position: relative;
-            padding: 5px;
-        }
-
-        .galeria-precio {
-            color: #f00;
-            font-weight: bold;
-            border-radius: 10px;
-            position: relative;
-            margin: 2px;
-            padding-top: 10px;
-            white-space: nowrap;
-        }
-
     }
 }
-
 
 // ...........................................................................................................................................
 /*HEADER------------------------------------------------------*/
@@ -1800,13 +1739,7 @@ body.inicio {
 
     }
 
-    .caja {
-        //no es de fila principal
-        box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.73);
-        border-radius: 10px
-    }
-
-    .fotos-de-productos {
+    .products-pictures {
 
         //no es de fila principal
         h3 {
@@ -1855,7 +1788,7 @@ body.notebooks {
         }
     }
 
-    .galeria-caja-de-item a {
+    .box-gallery-item a {
         height: 300px;
 
         .marg-top {

@@ -22,115 +22,67 @@
   }
 }
 @keyframes slide-to-the-left-30 {
-  0% {
+  from {
     width: 0;
   }
-  20% {
-    width: 6vh;
-  }
-  40% {
-    width: 12vh;
-  }
-  60% {
-    width: 18vh;
-  }
-  80% {
-    width: 24vh;
-  }
-  100% {
+  to {
     width: 30vh;
   }
 }
 @keyframes slide-to-the-left-20 {
-  0% {
+  from {
     width: 0;
   }
-  20% {
-    width: 4vh;
-  }
-  40% {
-    width: 8vh;
-  }
-  60% {
-    width: 12vh;
-  }
-  80% {
-    width: 16vh;
-  }
-  100% {
+  to {
     width: 20vh;
   }
 }
-div.galeria-caja-de-item a {
-  height: 400px;
+.box {
+  box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.73);
+  border-radius: 10px;
+}
+.box .box-gallery-item div {
+  height: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
+  height: 400px;
+  margin: 30px 10px;
+  padding: 5px;
   color: Black;
-  text-decoration: none;
-  background-color: white;
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top: 25px;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  overflow: hidden;
+  align-items: center;
+  box-shadow: 0 8px 16px 0 rgba(70, 0, 0, 0.541);
+  border-radius: 5px;
 }
-div.galeria-caja-de-item a:hover {
-  transition: 0.2s;
-  scale: 1.05;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
-}
-div.galeria-caja-de-item a .galeria-foto-titulo {
-  position: relative;
-}
-div.galeria-caja-de-item a .galeria-foto-titulo img {
-  margin-bottom: 15px;
-  width: 180px;
-  height: 180px;
+.box .box-gallery-item div img {
+  width: 160px;
+  height: 160px;
   object-fit: contain;
-  object-position: center;
   border-color: black;
   border-width: 0 0 2px 0;
   border-style: solid;
 }
-div.galeria-caja-de-item a .galeria-foto-titulo img:hover {
-  transition: 0.5s;
-  scale: 1.2;
-  border-style: none;
-}
-div.galeria-caja-de-item a .galeria-foto-titulo .flotante {
-  padding: 5px;
-  font-size: medium;
-  color: gray;
-  text-align: center;
+.box .box-gallery-item div button {
   position: absolute;
-  top: 190px;
-}
-div.galeria-caja-de-item a div {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-}
-div.galeria-caja-de-item a div button {
+  top: 350px;
   color: white;
   background-color: #000000;
   font-weight: bold;
   border-radius: 10px;
-  position: relative;
-  padding: 5px;
 }
-div.galeria-caja-de-item a div .galeria-precio {
-  color: #f00;
+.box .box-gallery-item div .cardprice {
   font-weight: bold;
-  border-radius: 10px;
+  color: Red;
+  position: absolute;
+  top: 330px;
+}
+.box .box-gallery-item div .item-name {
   position: relative;
-  margin: 2px;
-  padding-top: 10px;
-  white-space: nowrap;
+  top: 20px;
+  font-size: medium;
+  color: gray;
+  text-align: center;
 }
 
 /*HEADER------------------------------------------------------*/
@@ -512,7 +464,8 @@ section.lista-de-productos-small button.boton-desplega-lista i {
   padding: 3px;
   margin: 1px;
 }
-section.lista-de-productos-small button.boton-desplega-lista .sublista, section.lista-de-productos-small button.boton-desplega-lista .sublista-1 {
+section.lista-de-productos-small button.boton-desplega-lista .sublista,
+section.lista-de-productos-small button.boton-desplega-lista .sublista-1 {
   margin-top: 2px;
   background-color: white;
   border-radius: 5px;
@@ -1451,11 +1404,7 @@ body.inicio .img-inside .fotobottom div.overflowdeimagen img:hover {
   scale: 1.5;
   transition: 0.5s;
 }
-body.inicio .caja {
-  box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.73);
-  border-radius: 10px;
-}
-body.inicio .fotos-de-productos h3 {
+body.inicio .products-pictures h3 {
   margin-top: 30px;
   text-align: center;
   font-size: xx-large;
@@ -1494,16 +1443,16 @@ body.notebooks .container-de-filtros input {
   border: gray;
   border-style: solid;
 }
-body.notebooks .galeria-caja-de-item a {
+body.notebooks .box-gallery-item a {
   height: 300px;
 }
-body.notebooks .galeria-caja-de-item a .marg-top {
+body.notebooks .box-gallery-item a .marg-top {
   margin-top: -30px;
 }
-body.notebooks .galeria-caja-de-item a h6.flotante {
+body.notebooks .box-gallery-item a h6.flotante {
   font-size: smaller;
 }
-body.notebooks .galeria-caja-de-item a .galeria-precio {
+body.notebooks .box-gallery-item a .galeria-precio {
   top: 23px;
 }
 
