@@ -1312,7 +1312,7 @@ body.inicio {
 @media screen and (min-width: 776px) {
   body.inicio {
     background-size: contain;
-    background-image: url("../imagenes/imagenesInicio/fondo-de-inicio.jpeg");
+    background-image: url("/imagenes/imagenesInicio/fondo-de-inicio.jpeg");
     background-repeat: no-repeat;
     transition: 0.3s;
   }
@@ -1320,7 +1320,7 @@ body.inicio {
 @media screen and (max-width: 776px) {
   body.inicio {
     background-size: contain;
-    background-image: url("https://images.pexels.com/photos/5797903/pexels-photo-5797903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-image: url("https://images.pexels.com/photos/2708981/pexels-photo-2708981.jpeg?cs=srgb&dl=pexels-marko-blazevic-2708981.jpg&fm=jpg");
     transition: 0.3s;
     background-repeat: no-repeat;
   }

@@ -1,6 +1,4 @@
 
-// import dataBase from './classes.js';
-//hay q arreglar cuando los items son iguales
 class Products {
     constructor(price, stock, image, description, name, id, marca, cantidad) {
         this.price = price;
@@ -14,7 +12,6 @@ class Products {
     }
 }
 
-// console.log("ola");
 let producto1 = new Products(4999, 30, "imagenes/imagenesInicio/camara-destacada.webp", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "000000001", "none");
 
 let producto2 = new Products(15999, 20, "imagenes/imagenesInicio/gabinetegamer.webp", "Gabinete Sentey Z20 Lite - Led Rgb", "Gabinete Sentey Z20 Lite - Led Rgb", "000000002", "sentey");
@@ -32,8 +29,15 @@ let producto7 = new Products(5999, 26, "imagenes/imagenesInicio/ssd.webp", "Disc
 let producto8 = new Products(85099, 26, "imagenes/imagenesInicio/indice.webp", "Notebook Hp 14-cf3047la I3-1005g1 4gb 256gb Ssd Windows 10", "Notebook Hp 14-cf3047la I3-1005g1 4gb 256gb Ssd Windows 10", "000000008", "hp");
 
 let dataBaseMasVendidos = [producto1, producto2, producto3, producto4];
-let dataBaseDestacados = [producto5, producto6, producto7, producto8];
-
+ let dataBaseDestacados = [producto5, producto6, producto7, producto8];
+ fetch('../json/productos.json')
+ .then(function (response) {
+   return response.json();
+ })
+ .then(function (data) {
+   console.log("los datos se cargaron correctamente");
+   console.log(data); 
+ })
 
 function cardCarusel(id, items) {
     let card = document.getElementById(id);
