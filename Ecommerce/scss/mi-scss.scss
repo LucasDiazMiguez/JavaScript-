@@ -157,6 +157,7 @@ $padding10px: 5px*2;
             align-items: center;
             box-shadow: 0 8px 16px 0 rgba(70, 0, 0, 0.541);
             border-radius: 5px;
+
             img {
                 width: 160px;
                 height: 160px;
@@ -173,10 +174,16 @@ $padding10px: 5px*2;
                 background-color: #000000;
                 font-weight: bold;
                 border-radius: 10px;
+
+                i {
+                    margin: 5px;
+
+                }
             }
+
             .cardprice {
                 font-weight: bold;
-                color:Red;
+                color: Red;
                 position: absolute;
                 top: 330px;
             }
@@ -1547,49 +1554,36 @@ body.compras {
 
             .fila__producto__numero__precio {
                 display: flex;
-                margin-bottom: 10px;
                 flex-direction: row;
                 flex-wrap: nowrap;
-                justify-content: space-around;
-                align-content: center;
-                border-radius: 5px;
                 color: white;
                 font-weight: bold;
 
-                .button-minus-plus {
+                div {
                     display: flex;
                     flex-direction: row;
-                    align-content: center;
-                    align-items: center;
                     flex-wrap: nowrap;
-                    justify-content: space-evenly;
-                    border-style: none;
-                    color: white;
-                    width: 30%;
-                    margin: 2px;
-
-                    button {
-                        border-style: none;
-                        background-color: gray;
-                        margin: 1px;
-                        padding: 0;
-                        color: white;
-
-                        i {
-                            padding: 2px;
-                            margin: 4px;
-                        }
-
-                        &:hover {
-                            background-color: rgb(73, 71, 71);
-                            transition: 0.3s;
-                            border-radius: 8px;
-                        }
+                    input {
+                        -webkit-appearance: none;
+                        -moz-appearance: textfield;
 
                     }
 
-                    border-radius: 5px;
-                    background: gray;
+                    button {
+                        background-color: white;
+                        border-style: none;
+                    }
+
+
+                    #cantidad--de--productos {
+                        background-color: none;
+                        color: black;
+                        padding: 10px;
+                        width: 30%;
+                        border-color: gray;
+                        border-width: 1px;
+                        border-radius: 10px;
+                    }
                 }
 
                 strong {
@@ -1597,15 +1591,6 @@ body.compras {
                     background-color: rgb(141, 6, 6);
                     padding: 10px;
                     white-space: nowrap;
-                }
-
-                #cantidad--de--productos {
-                    color: black;
-                    padding: 10px;
-                    width: 30%;
-                    border-color: gray;
-                    border-width: 1px;
-                    border-radius: 10px;
                 }
             }
         }

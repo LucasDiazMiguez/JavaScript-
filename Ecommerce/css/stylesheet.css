@@ -71,6 +71,9 @@
   font-weight: bold;
   border-radius: 10px;
 }
+.box .box-gallery-item div button i {
+  margin: 5px;
+}
 .box .box-gallery-item div .cardprice {
   font-weight: bold;
   color: Red;
@@ -1235,58 +1238,38 @@ body.compras .contenedor-de-filas .fila__producto .fila__producto__eliminar__ign
 }
 body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio {
   display: flex;
-  margin-bottom: 10px;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-around;
-  align-content: center;
-  border-radius: 5px;
   color: white;
   font-weight: bold;
 }
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio .button-minus-plus {
+body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div {
   display: flex;
   flex-direction: row;
-  align-content: center;
-  align-items: center;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
+}
+body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div input {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div button {
+  background-color: white;
   border-style: none;
-  color: white;
-  width: 30%;
-  margin: 2px;
-  border-radius: 5px;
-  background: gray;
 }
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio .button-minus-plus button {
-  border-style: none;
-  background-color: gray;
-  margin: 1px;
-  padding: 0;
-  color: white;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio .button-minus-plus button i {
-  padding: 2px;
-  margin: 4px;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio .button-minus-plus button:hover {
-  background-color: #494747;
-  transition: 0.3s;
-  border-radius: 8px;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio strong {
-  border-radius: 10px;
-  background-color: #8d0606;
-  padding: 10px;
-  white-space: nowrap;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio #cantidad--de--productos {
+body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div #cantidad--de--productos {
+  background-color: none;
   color: black;
   padding: 10px;
   width: 30%;
   border-color: gray;
   border-width: 1px;
   border-radius: 10px;
+}
+body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio strong {
+  border-radius: 10px;
+  background-color: #8d0606;
+  padding: 10px;
+  white-space: nowrap;
 }
 body.compras .contenedor-de-filas .fila__confirmar__pago h5 {
   color: white;
