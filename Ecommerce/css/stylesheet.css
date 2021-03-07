@@ -37,11 +37,41 @@
     width: 20vh;
   }
 }
+@keyframes addToCartCheck {
+  0% {
+    background-color: red;
+    color: white;
+  }
+  25% {
+    background-color: yellow;
+    color: black;
+  }
+  50% {
+    background-color: blue;
+    color: green;
+  }
+  75% {
+    background-color: green;
+    color: blue;
+  }
+}
+.animation-class {
+  opacity: 1;
+  animation-name: addToCartCheck;
+  animation-duration: 2s;
+  transition: 0.5s;
+  transform: translate(0, 0);
+  transform: rotate(0);
+  scale: 1.2;
+  border-radius: 5px;
+}
+
 .box {
   box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.73);
   border-radius: 10px;
 }
 .box .box-gallery-item div {
+  position: relative;
   height: 100%;
   width: 95%;
   display: flex;
@@ -65,24 +95,28 @@
 }
 .box .box-gallery-item div button {
   position: absolute;
-  top: 350px;
+  top: 320px;
   color: white;
   background-color: #000000;
   font-weight: bold;
   border-radius: 10px;
 }
-.box .box-gallery-item div button i {
-  margin: 5px;
+.box .box-gallery-item div button .normal {
+  opacity: 0;
+  color: black;
+  transform: rotate(150);
+  transform: translate(50px, -100px);
+  border-radius: 5px;
+  scale: 0.7;
 }
 .box .box-gallery-item div .cardprice {
   font-weight: bold;
   color: Red;
   position: absolute;
-  top: 330px;
+  top: 300px;
 }
 .box .box-gallery-item div .item-name {
-  position: relative;
-  top: 20px;
+  margin-top: 30px;
   font-size: medium;
   color: gray;
   text-align: center;

@@ -45,26 +45,39 @@ function cardCarusel(id, items) {
         console.log(items.length);
 
         if (items[i].stock > 0) {
+            let idi=items[i].id+"check";
+            let idb=items[i].id+"button";
+            console.log(idi);
             card.innerHTML = card.innerHTML + `
             <div class="col-lg-3     col-md-6 box-gallery-item">
-            <div id="cardtick">
+            <div id="">
             <img src="${items[i].image}"
                 alt="${items[i].description}">
             <h6 class="item-name">${items[i].name}</h6>
             <h6 class="cardprice">$ ${items[i].price} </h6>
-            <button id="${items[i].id}"value=""   onclick='AddtoCart(${JSON.stringify(items[i])})'>agregar al carrito</button>
+            <button id="${idb}"value=""   onclick='AddtoCart(${JSON.stringify(items[i])})'>agregar al carrito <i id="${idi}" class="fas fa-check normal"></i></button>
         </div>
         </div>
             `;
         }
     }
 }
+function addCheck(product){
+    let idi=document.getElementById(product.id+"check");
+    console.log(idi);
+    console.log("asjdflsdkf");
+    idi.classList.remove("normal");
+    idi.classList.add("animation-class");
+    setTimeout(function(){
+        idi.classList.remove("animation-class");
+        idi.classList.add("normal");
+    },2000);
+}
 function AddtoCart(product) {
     if (product.stock > 0) {
         console.log("im in");
         product.stock = product.stock - 1;
         let flag = 0;
-        console.log("yo soy shopping cart" + shoppingCart)
         for (let i = 0; i < shoppingCart.length; i++) {
             if (product.id == shoppingCart[i].id) {
                 shoppingCart[i].cantidadAgregada = shoppingCart[i].cantidadAgregada + 1;
@@ -78,13 +91,12 @@ function AddtoCart(product) {
             shoppingCart.push(product);
         }
         localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
-        let  inicio = document.getElementById("gallery-products");
 
-        if (inicio!=null) {
-            let bottonCheck = document.getElementById(product.id);//this is the same Id as the card object
-            bottonCheck.innerHTML = bottonCheck.innerHTML + `<i class="fas fa-check"></i>`;
-        }
+    }
 
+    let index = document.getElementById("gallery-products");
+    if (index!=null) {
+       addCheck(product);
     }
     showCarrito(shoppingCart);
     cardlength();
@@ -195,7 +207,6 @@ function showCarrito(shoppingCart) {
 //index its a flag variable, if it isnt in index html, index=null,else  equals something different than null
 
 let index = document.getElementById("gallery-products");
-console.log(index);
 if ((index) != null) {
     cardCarusel('row-One', dataBaseMasVendidos);
     cardCarusel('row-Two', dataBaseDestacados);
