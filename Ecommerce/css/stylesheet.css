@@ -816,6 +816,18 @@ section.lista-de-productos-small .lista-de-productos-small-container button.boto
     display: none;
   }
 }
+.nostock {
+  background-color: red;
+  transition: 0.5s;
+  margin: 5px;
+  border-radius: 30px;
+}
+
+.agregarCarritoHover:hover {
+  scale: 1.1;
+  transition: 0.2s;
+}
+
 footer {
   margin-top: 200px;
   /* box-shadow: 10px 5px 10px 10px rgba(179, 184, 168, 0.333 ); */
@@ -1195,7 +1207,7 @@ body.compras {
   background-repeat: no-repeat;
   background-size: cover;
 }
-body.compras h5 {
+body.compras #item-name {
   margin: 20px;
   padding: 30px;
   color: Black;
@@ -1272,38 +1284,45 @@ body.compras .contenedor-de-filas .fila__producto .fila__producto__eliminar__ign
 }
 body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio {
   display: flex;
-  flex-direction: row;
   flex-wrap: nowrap;
-  color: white;
-  font-weight: bold;
 }
 body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  color: black;
 }
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div input {
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div button {
+body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div .normal {
   background-color: white;
   border-style: none;
+  transition: 0.5s;
+  margin: 5px;
+  border-radius: 30px;
 }
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div #cantidad--de--productos {
-  background-color: none;
-  color: black;
-  padding: 10px;
-  width: 30%;
-  border-color: gray;
-  border-width: 1px;
-  border-radius: 10px;
+body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div h5 {
+  padding: 5px;
+  margin-top: 10px;
 }
 body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio strong {
   border-radius: 10px;
   background-color: #8d0606;
   padding: 10px;
   white-space: nowrap;
+  color: white;
+}
+body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio #deleteItemShoppingCart {
+  position: relative;
+  top: -10px;
+  left: 84px;
+  scale: 1.7;
+  border-radius: 5px;
+  padding: 5px;
+  height: 24px;
+  transition: 0.5s;
+}
+body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio #deleteItemShoppingCart:hover {
+  background: black;
+  color: white;
 }
 body.compras .contenedor-de-filas .fila__confirmar__pago h5 {
   color: white;

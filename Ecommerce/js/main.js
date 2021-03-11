@@ -12,7 +12,7 @@ class Products {
     }
 }
 
-let producto1 = new Products(4999, 30, "imagenes/imagenesInicio/camara-destacada.webp", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "000000001", "none", 0);
+let producto1 = new Products(4999, 1, "imagenes/imagenesInicio/camara-destacada.webp", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "000000001", "none", 0);
 
 let producto2 = new Products(15999, 20, "imagenes/imagenesInicio/gabinetegamer.webp", "Gabinete Sentey Z20 Lite - Led Rgb", "Gabinete Sentey Z20 Lite - Led Rgb", "000000002", "sentey", 0);
 
@@ -55,7 +55,7 @@ function cardCarusel(id, items) {
                 alt="${items[i].description}">
             <h6 class="item-name">${items[i].name}</h6>
             <h6 class="cardprice">$ ${items[i].price} </h6>
-            <button id="${idb}"value=""   onclick='AddtoCart(${JSON.stringify(items[i])})'>agregar al carrito <i id="${idi}" class="fas fa-check normal"></i></button>
+            <button id="${idb}"value="" class="agregarCarritoHover"  onclick='AddtoCart(${JSON.stringify(items[i])})'>agregar al carrito <i id="${idi}" class="fas fa-check normal"></i></button>
         </div>
         </div>
             `;
@@ -64,8 +64,6 @@ function cardCarusel(id, items) {
 }
 function addCheck(product){
     let idi=document.getElementById(product.id+"check");
-    console.log(idi);
-    console.log("asjdflsdkf");
     idi.classList.remove("normal");
     idi.classList.add("animation-class");
     setTimeout(function(){
@@ -73,59 +71,83 @@ function addCheck(product){
         idi.classList.add("normal");
     },2000);
 }
+function noMoreStock(product){
+    let idi=document.getElementById(product.id+"plusSign");
+    idi.classList.remove("normal");
+    idi.classList.add("nostock");
+
+    setTimeout(function(){
+        idi.classList.remove("nostock");
+        idi.classList.add("normal");
+
+    },2000);
+}
+function addCross(product){
+    let idi=document.getElementById(product.id+"cross");
+    idi.classList.remove("normal");
+    idi.classList.add("animation-class");
+    setTimeout(function(){
+        idi.classList.remove("animation-class");
+        idi.classList.add("normal");
+    },1000);
+}
 function AddtoCart(product) {
+    console.log(product.stock);
     if (product.stock > 0) {
+        //to know where Addtocart is been called from
         console.log("im in");
-        product.stock = product.stock - 1;
+        if (imInIndex() && product.stock >0) {
+           addCheck(product);
+        }
         let flag = 0;
         for (let i = 0; i < shoppingCart.length; i++) {
             if (product.id == shoppingCart[i].id) {
                 shoppingCart[i].cantidadAgregada = shoppingCart[i].cantidadAgregada + 1;
+                shoppingCart[i].stock = shoppingCart[i].stock - 1;
                 flag = 1;
             }
         }
         if (flag == 0) {
             product.cantidadAgregada = product.cantidadAgregada + 1;
-            console.log("entro acá");
-            console.log(product.cantidadAgregada);
+            product.stock = product.stock - 1;
             shoppingCart.push(product);
         }
         localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+        showCarrito(shoppingCart);
+    } else if(!imInIndex()){
+
+        noMoreStock(product);
+        
 
     }
-
-    let index = document.getElementById("gallery-products");
-    if (index!=null) {
-       addCheck(product);
-    }
-    showCarrito(shoppingCart);
+    
     cardlength();
 }
-function deleteProduct(product) {
-    let newShoppingCart = [];
-    let variabledeayuda = 0;
-
+function deleteAll(product){
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
-
+    for (let i = 0; i < shoppingCart.length; i++) {
+        if (product.id == shoppingCart[i].id) {
+            shoppingCart.splice(i,1);
+        }
+    }
+    localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
+    showCarrito(JSON.parse(localStorage.getItem("shoppingCart")));
+}
+function deleteProduct(product) {
+    shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
     for (let i = 0; i < shoppingCart.length; i++) {
         console.log(product);
         console.log(shoppingCart[i]);
         if (product.id == shoppingCart[i].id) {
             if (product.cantidadAgregada>1) {
                 shoppingCart[i].cantidadAgregada=shoppingCart[i].cantidadAgregada-1;
-                newShoppingCart[i] = shoppingCart[i];
+                shoppingCart[i].stock=shoppingCart[i].stock+1;
             }else{
-                variabledeayuda = 1;
+                shoppingCart.splice(i,1);
             }
-        } else {
-            console.log("toy aka");
-            newShoppingCart[i - variabledeayuda] = shoppingCart[i];
-        }
+        } 
     }
-    console.log("dsps de eliminar");
-    console.log(newShoppingCart);
-    shoppingCart = newShoppingCart;
-    localStorage.setItem("shoppingCart", JSON.stringify(newShoppingCart));
+    localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
     showCarrito(JSON.parse(localStorage.getItem("shoppingCart")));
     cardlength();
 }
@@ -148,37 +170,26 @@ function showCarrito(shoppingCart) {
             <div class="row justify-content-around align-items-center fila__producto ">
             <div class="col-lg-3 fila__producto__eliminar__ignorar">
                 <img src="${shoppingCart[i].image}" alt=" AMD Radeon 6800XT">
-                <div class="checkboxes">
-                    <div class="checkbox-sub">
-                        <button name="eliminar"
-                            onclick='deleteProduct(${JSON.stringify(shoppingCart[i])})'>eliminar</button>
-                    </div>
-                    <div class="checkbox-sub">
-                        <label for="ignorar">Ignorar</label>
-                        <input type="checkbox" name="eliminar">
-                    </div>
-                </div>
             </div>
             <div class="col-lg-5">
-                <h5> ${shoppingCart[i].name} </h5>
+                <h5 id="item-name"> ${shoppingCart[i].name} </h5>
             </div>
             <div class="col-lg-4 fila__producto__numero__precio">
                 <div>
-                    <button onclick='deleteProduct(${JSON.stringify(shoppingCart[i])})'>
+                    <button class="normal" onclick='deleteProduct(${JSON.stringify(shoppingCart[i])})'>
                         <i class="fas fa-minus"></i>
                     </button>
-                    <input type="number" value="${shoppingCart[i].cantidadAgregada}" name="cantidad"
-                        id="cantidad--de--productos">
-                    <button onclick='AddtoCart(${JSON.stringify(shoppingCart[i])})'>
+                    <h5 >${shoppingCart[i].cantidadAgregada} </h5>
+                    <button id="${shoppingCart[i].id+"plusSign"}" class="normal" onclick='AddtoCart(${JSON.stringify(shoppingCart[i])})' ">
                         <i class="fas fa-plus"></i>
                     </button>
                 </div>
                 <strong class="price"> Precio: ${shoppingCart[i].cantidadAgregada * shoppingCart[i].price}$ </strong>
+                <i id="deleteItemShoppingCart" class="fas fa-times" onclick='deleteAll(${JSON.stringify(shoppingCart[i])})'></i>
             </div>
             </div>
             `
         }
-        console.log(aux);
         divDeCompra.innerHTML = aux +
             `<div class="row justify-content-around align-items-center fila__confirmar__pago">
         <div class="col-lg-5">
@@ -205,17 +216,25 @@ function showCarrito(shoppingCart) {
     }
 }
 //index its a flag variable, if it isnt in index html, index=null,else  equals something different than null
-
-let index = document.getElementById("gallery-products");
-if ((index) != null) {
-    cardCarusel('row-One', dataBaseMasVendidos);
-    cardCarusel('row-Two', dataBaseDestacados);
+function imInIndex(){
+    let index = document.getElementById("gallery-products");
+    if ((index) != null) {
+    return true;
+    }else{
+    return false;
+    }
+}
+function showCardsIndex(){
+    if (imInIndex()) {
+        cardCarusel('row-One', dataBaseMasVendidos);
+        cardCarusel('row-Two', dataBaseDestacados);
+    }
 }
 let shoppingCart = [];
 if (localStorage.getItem("shoppingCart") != null) {
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
 }
-
+showCardsIndex();
 showCarrito(shoppingCart);
 
 

@@ -137,29 +137,42 @@ $padding10px: 5px*2;
         width: 20vh;
     }
 }
+
 @keyframes addToCartCheck {
-    0%   {background-color: red;
-            color:white;
+    0% {
+        background-color: red;
+        color: white;
     }
-    25%  {background-color: yellow;
-    color: black;}
-    50%  {background-color: blue;
-    color: green;}
-    75% {background-color: green;
-    color: blue;}
-  }
-.animation-class{
+
+    25% {
+        background-color: yellow;
+        color: black;
+    }
+
+    50% {
+        background-color: blue;
+        color: green;
+    }
+
+    75% {
+        background-color: green;
+        color: blue;
+    }
+}
+
+.animation-class {
     opacity: 1;
     animation-name: addToCartCheck;
     animation-duration: 2s;
     transition: 0.5s;
-    transform: translate(0,0);
+    transform: translate(0, 0);
     transform: rotate(0);
     scale: (1.2);
     border-radius: 5px;
-    
+
 
 }
+
 .box {
     box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.73);
     border-radius: 10px;
@@ -196,7 +209,8 @@ $padding10px: 5px*2;
                 background-color: #000000;
                 font-weight: bold;
                 border-radius: 10px;
-                .normal{
+
+                .normal {
                     opacity: 0;
                     color: black;
                     transform: rotate(150);
@@ -1150,8 +1164,17 @@ section.lista-de-productos-big {
     }
 }
 
-
-
+.nostock {
+    background-color: red;
+    transition: 0.5s;
+    margin: 5px;
+    border-radius: 30px;
+}
+.agregarCarritoHover:hover{
+   
+    scale: 1.1;
+    transition: 0.2s;
+}
 // FOOOOTEEEER-------------------------------------------------------------
 footer {
     margin-top: 200px;
@@ -1491,7 +1514,7 @@ body.compras {
     background-repeat: no-repeat;
     background-size: cover;
 
-    h5 {
+    #item-name {
         margin: 20px;
         padding: 30px;
         color: $negro;
@@ -1578,37 +1601,27 @@ body.compras {
 
             .fila__producto__numero__precio {
                 display: flex;
-                flex-direction: row;
                 flex-wrap: nowrap;
-                color: white;
-                font-weight: bold;
 
                 div {
                     display: flex;
                     flex-direction: row;
                     flex-wrap: nowrap;
+                    color: black;
 
-                    input {
-                        -webkit-appearance: none;
-                        -moz-appearance: textfield;
-
-                    }
-
-                    button {
+                    .normal {
                         background-color: white;
                         border-style: none;
+                        transition: 0.5s;
+                        margin: 5px;
+                        border-radius: 30px;
                     }
 
-
-                    #cantidad--de--productos {
-                        background-color: none;
-                        color: black;
-                        padding: 10px;
-                        width: 30%;
-                        border-color: gray;
-                        border-width: 1px;
-                        border-radius: 10px;
+                    h5 {
+                        padding: 5px;
+                        margin-top: 10px;
                     }
+
                 }
 
                 strong {
@@ -1616,6 +1629,23 @@ body.compras {
                     background-color: rgb(141, 6, 6);
                     padding: 10px;
                     white-space: nowrap;
+                    color: white;
+                }
+
+                #deleteItemShoppingCart {
+                    position: relative;
+                    top: -10px;
+                    left: 84px;
+                    scale: 1.7;
+                    border-radius: 5px;
+                    padding: 5px;
+                    height: 24px;
+                    transition: 0.5s;
+
+                    &:hover {
+                        background: black;
+                        color: white;
+                    }
                 }
             }
         }
