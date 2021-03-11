@@ -1,3 +1,4 @@
+// TODO         <h1>fijarse lo de stock,añadir cruz, añadir que pasa cuando compras, arreglar div de compra is null, añadir vaciar carrito etc</h1>
 
 class Products {
     constructor(price, stock, image, description, name, id, marca, cantidadAgregada) {
