@@ -1,5 +1,14 @@
-// TODO         <h1>fijarse lo de stock,añadir cruz, añadir que pasa cuando compras, arreglar div de compra is null, añadir vaciar carrito etc</h1>
-
+//TODO we need to confirm that all the data submitted by the user in the create user page is correct.
+// TODO  We are going to save all the data of the page Crear Usuario in the localStorage. Then if the user logs out, he only needs the password and the user to log in.
+//TODO When the user completes  the create user page, he is already signed in.
+//TODO in the right column we add a shopping cart with all the items displayed
+//TODO After the user completes the log in reequiere, then the  user direction appears. The first option is going to be the address used to create the user, and the another field that says "another"
+// TODO  Then we make a How do u want to pay cart 
+// TODO  Then we show the user how he is going to pay, the direction , the items , and a button that says confirm transaction.
+// TODO  also we need to use the mercado pago API
+// TODO  after we show a tick animation and then we delete the shopping cart.
+// TODO  After we finished that we can add buttons to the step mentioned above for the user to travel between the form fields or to complete again the data loged in.
+// TODO after the user logs in we need to delete all the  acess to the  create user and log in page
 class Products {
     constructor(price, stock, image, description, name, id, marca, cantidadAgregada) {
         this.price = price;
@@ -14,23 +23,17 @@ class Products {
 }
 
 let producto1 = new Products(4999, 1, "imagenes/imagenesInicio/camara-destacada.webp", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "000000001", "none", 0);
-
 let producto2 = new Products(15999, 20, "imagenes/imagenesInicio/gabinetegamer.webp", "Gabinete Sentey Z20 Lite - Led Rgb", "Gabinete Sentey Z20 Lite - Led Rgb", "000000002", "sentey", 0);
-
 let producto3 = new Products(150999, 10, "imagenes/imagenesInicio/GPU.webp", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "000000003", "nvidia", 0);
-
 let producto4 = new Products(26999, 16, "imagenes/imagenesInicio/motherboardbarata-destacado.webp", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "Motherboard Gigabyte Ga-b365m Elite Intel 1151 9na 4", "000000004", "gigabyte", 0);
-
 let producto5 = new Products(3999, 16, "imagenes/imagenesInicio/reloj-destacado.webp", "Xiaomi Mi Band 5 Global Smart Watch Reloj Inteligente + Film", "Xiaomi Mi Band 5 Global Smart Watch Reloj Inteligente + Film", "000000005", "xiaomi", 0);
-
 let producto6 = new Products(180999, 26, "imagenes/imagenesInicio/rtx 2080ti.webp", "Placa Video Geforce Strix Gaming 2080ti Ddr6 11gb Rog ", "Placa Video Geforce Strix Gaming 2080ti Ddr6 11gb Rog ", "000000006", "nvidia", 0);
-
 let producto7 = new Products(5999, 26, "imagenes/imagenesInicio/ssd.webp", "Disco sólido interno Kingston SA400S37/480G 480GB", "Disco sólido interno Kingston SA400S37/480G 480GB", "000000007", "kingston", 0);
-
 let producto8 = new Products(85099, 26, "imagenes/imagenesInicio/indice.webp", "Notebook Hp 14-cf3047la I3-1005g1 4gb 256gb Ssd Windows 10", "Notebook Hp 14-cf3047la I3-1005g1 4gb 256gb Ssd Windows 10", "000000008", "hp", 0);
-
 let dataBaseMasVendidos = [producto1, producto2, producto3, producto4];
 let dataBaseDestacados = [producto5, producto6, producto7, producto8];
+
+
 fetch('../json/productos.json')
     .then(function (response) {
         return response.json();
@@ -43,12 +46,10 @@ fetch('../json/productos.json')
 function cardCarusel(id, items) {
     let card = document.getElementById(id);
     for (let i = 0; i < 4; i++) {
-        console.log(items.length);
 
         if (items[i].stock > 0) {
             let idi=items[i].id+"check";
             let idb=items[i].id+"button";
-            console.log(idi);
             card.innerHTML = card.innerHTML + `
             <div class="col-lg-3     col-md-6 box-gallery-item">
             <div id="">
@@ -93,14 +94,9 @@ function addCross(product){
     },1000);
 }
 function AddtoCart(product) {
-    console.log(product.stock);
     if (product.stock > 0) {
         //to know where Addtocart is been called from
-        console.log("im in");
-        if (imInIndex() && product.stock >0) {
-           addCheck(product);
-        }
-        let flag = 0;
+              let flag = 0;
         for (let i = 0; i < shoppingCart.length; i++) {
             if (product.id == shoppingCart[i].id) {
                 shoppingCart[i].cantidadAgregada = shoppingCart[i].cantidadAgregada + 1;
@@ -114,7 +110,11 @@ function AddtoCart(product) {
             shoppingCart.push(product);
         }
         localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
-        showCarrito(shoppingCart);
+        if (imInIndex()) {
+            addCheck(product);
+        }else{
+            showCarrito(shoppingCart);
+        }
     } else if(!imInIndex()){
 
         noMoreStock(product);
@@ -137,8 +137,6 @@ function deleteAll(product){
 function deleteProduct(product) {
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
     for (let i = 0; i < shoppingCart.length; i++) {
-        console.log(product);
-        console.log(shoppingCart[i]);
         if (product.id == shoppingCart[i].id) {
             if (product.cantidadAgregada>1) {
                 shoppingCart[i].cantidadAgregada=shoppingCart[i].cantidadAgregada-1;
@@ -157,10 +155,8 @@ function cardlength() {
     $("#cart-icon-b").text("Carrito " + aux);
 }
 function showCarrito(shoppingCart) {
-    cardlength();
     if (localStorage.getItem("shoppingCart") != null) {
         shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
-        console.log(shoppingCart);
         let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
         let preciototal = 0;
         let aux = 0;
@@ -199,7 +195,7 @@ function showCarrito(shoppingCart) {
             <h5>TOTAL: ${preciototal} .-</h5>
         </div>
         <div class="col-lg-3">
-            <input type="submit" value="Confirmar compra">
+            <input onclick='confirmTransaction()' type="submit" value="Confirmar compra">
         </div>
 
         </div>`
@@ -231,12 +227,51 @@ function showCardsIndex(){
         cardCarusel('row-Two', dataBaseDestacados);
     }
 }
+function logIn(){
+    return (logInVariable==1);
+}
+function confirmTransaction(){
+    let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
+    if (!logIn()) {
+        divDeCompra.innerHTML=`
+        <div class="container contenedor-de-filas" id="contenedor-de-filas-carrito">
+        <div class="row align-items-center fila__producto__titulo ">
+        <h4>Ingrese sesión para poder finalizar la compra!</h4>
+        </div>
+        </div>
+        <a href="iniciodesesion.html" class="menu__skinny__window"><button class=""><i
+                                    class="fas fa-user-circle"></i></button></a>
+                        <a href="iniciodesesion.html" class="menu__big__window">Iniciar Sesión</a>
+                        <!-- espacio -->
+                        <a href="crearusuario.html" class="menu__skinny__window"><button class=""><i
+                                    class="fas fa-user-plus"></i></button></a>
+                        <a href="crearusuario.html" class="menu__big__window">Crear Usuario</a>
+                        <!-- espacio -->
+    `;
+    }
+}
+
+let usuario=[]
+let password=[]
 let shoppingCart = [];
+let logInVariable=[];
+
+if (localStorage.getItem("logInVariable") != null) {
+    shoppingCart = JSON.parse(localStorage.getItem("logInVariable"));
+}
+if (localStorage.getItem("usuario") != null) {
+    shoppingCart = JSON.parse(localStorage.getItem("usuario"));
+}
+if (localStorage.getItem("password") != null) {
+    shoppingCart = JSON.parse(localStorage.getItem("password"));
+}
 if (localStorage.getItem("shoppingCart") != null) {
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
 }
 showCardsIndex();
-showCarrito(shoppingCart);
+if (!imInIndex()) {
+    showCarrito(shoppingCart);
+}
 
 
 
