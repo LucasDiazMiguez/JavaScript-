@@ -1380,15 +1380,19 @@ body.crearusuario {
     }
     .wrongField{
         position: relative;
-        top: -25px;
+        top: -26px;
         right: -213px;
-        opacity: 1;
+        color: white;
+        scale: 1.4;
     }
     .normalField{
         position: relative;
+        top: -31px;
+        right: -213px;
+        color: white;
         opacity: 0;
-        top: -25px;
-        right: -100px;
+        scale: 0.8;
+        transition: 0.5s;
     }
     .contecrearusuario {
         border-radius: 10px;

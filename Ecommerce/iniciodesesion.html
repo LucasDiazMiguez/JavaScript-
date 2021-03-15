@@ -8,10 +8,13 @@
     <link rel="Shortcut Icon" href="imagenes/Rovel.png" type="image/jpg">
     <meta name="description"
         content="Iniciar sesión en tu cuenta de BRAND, donde podés ver tus productos, carritos y ofertas seleccionadas">
-    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.css">
-    <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="css/stylesheet.css">
-    <script src="https://kit.fontawesome.com/357d076d0b.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="css/stylesheet.css">
+      <!-- bootstrap -->
+      <link rel="stylesheet" href="bootstrap-5.0.0-beta2-dist/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="bootstrap-5.0.0-beta2-dist/js/bootstrap.min.js"> </script>
+      <script src="https://kit.fontawesome.com/bf072d049e.js" crossorigin="anonymous"></script>    
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> 
@@ -171,15 +174,15 @@
                         <h2>Bienvenido.</h2>
                         <div class="conteiniciarsesion__form__nowrap">
                             <label for="Username">Usuario </label>
-                            <input type="text" name="Username" required placeholder="Pedrito">
+                            <input id="userNicknameLogIn" type="text" name="Username" required placeholder="Pedrito">
                         </div>
                         <br>
                         <div class="conteiniciarsesion__form__nowrap">
                             <label for="Password">Contraseña</label>
-                            <input type="text" name="Password" required placeholder="Contraseña123">
+                            <input type="text" id="userPasswordLogIn" name="Password" required placeholder="Contraseña123">
                         </div>
                         <br>
-                        <input id="conteiniciarsesion__form--submit" type="submit" class="iniciarSesion"
+                        <input onclick= 'initiateSesion()' id="conteiniciarsesion__form--submit" type="submit" class="iniciarSesion"
                             value="Iniciar sesión">
                         <br>
                         <br>
@@ -248,5 +251,6 @@
                 </div>
             </div>
         </footer>
-
+        <script src="js/main.js"></script>
 </body>
+</html>

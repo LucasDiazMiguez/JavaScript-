@@ -1,4 +1,3 @@
-//TODO we need to confirm that all the data submitted by the user in the create user page is correct.
 // TODO  We are going to save all the data of the page Crear Usuario in the localStorage. Then if the user logs out, he only needs the password and the user to log in.
 //TODO When the user completes  the create user page, he is already signed in.
 //TODO in the right column we add a shopping cart with all the items displayed
@@ -48,8 +47,8 @@ function cardCarusel(id, items) {
     for (let i = 0; i < 4; i++) {
 
         if (items[i].stock > 0) {
-            let idi=items[i].id+"check";
-            let idb=items[i].id+"button";
+            let idi = items[i].id + "check";
+            let idb = items[i].id + "button";
             card.innerHTML = card.innerHTML + `
             <div class="col-lg-3     col-md-6 box-gallery-item">
             <div id="">
@@ -64,49 +63,53 @@ function cardCarusel(id, items) {
         }
     }
 }
-function addCheck(product){
-    let idi=document.getElementById(product.id+"check");
+
+function addCheck(product) {
+    let idi = document.getElementById(product.id + "check");
     idi.classList.remove("normal");
     idi.classList.add("animation-class");
-    setTimeout(function(){
+    setTimeout(function () {
         idi.classList.remove("animation-class");
         idi.classList.add("normal");
-    },2000);
+    }, 2000);
 }
-function noMoreStock(product){
-    let idi=document.getElementById(product.id+"plusSign");
+
+function noMoreStock(product) {
+    let idi = document.getElementById(product.id + "plusSign");
     idi.classList.remove("normal");
     idi.classList.add("nostock");
 
-    setTimeout(function(){
+    setTimeout(function () {
         idi.classList.remove("nostock");
         idi.classList.add("normal");
 
-    },2000);
+    }, 2000);
 }
-function addCross(product){
-    let idi=document.getElementById(product.id+"cross");
+
+function addCross(product) {
+    let idi = document.getElementById(product.id + "cross");
     idi.classList.remove("normal");
     idi.classList.add("animation-class");
-    setTimeout(function(){
+    setTimeout(function () {
         idi.classList.remove("animation-class");
         idi.classList.add("normal");
-    },1000);
+    }, 5000);
 }
-function addCrossCreateUser(id){
-    console.log("id"+"I");
-    let idi=document.getElementById(id+"I");
-    idi.classList.remove("normal");
-    idi.classList.add("animation-class");
-    setTimeout(function(){
-        idi.classList.remove("animation-class");
-        idi.classList.add("normal");
-    },1000);
+
+function addCrossCreateUser(id) {
+    let idi = document.getElementById(id);
+    idi.classList.remove("normalField");
+    idi.classList.add("wrongField");
+    setTimeout(function () {
+        idi.classList.remove("wrongField");
+        idi.classList.add("normalField");
+    }, 5000);
 }
+
 function AddtoCart(product) {
     if (product.stock > 0) {
         //to know where Addtocart is been called from
-              let flag = 0;
+        let flag = 0;
         for (let i = 0; i < shoppingCart.length; i++) {
             if (product.id == shoppingCart[i].id) {
                 shoppingCart[i].cantidadAgregada = shoppingCart[i].cantidadAgregada + 1;
@@ -122,48 +125,52 @@ function AddtoCart(product) {
         localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
         if (imInIndex()) {
             addCheck(product);
-        }else{
+        } else {
             showCarrito(shoppingCart);
         }
-    } else if(!imInIndex()){
+    } else if (!imInIndex()) {
 
         noMoreStock(product);
-        
+
 
     }
-    
+
     cardlength();
 }
-function deleteAll(product){
+
+function deleteAll(product) {
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
     for (let i = 0; i < shoppingCart.length; i++) {
         if (product.id == shoppingCart[i].id) {
-            shoppingCart.splice(i,1);
+            shoppingCart.splice(i, 1);
         }
     }
     localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
     showCarrito(JSON.parse(localStorage.getItem("shoppingCart")));
 }
+
 function deleteProduct(product) {
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
     for (let i = 0; i < shoppingCart.length; i++) {
         if (product.id == shoppingCart[i].id) {
-            if (product.cantidadAgregada>1) {
-                shoppingCart[i].cantidadAgregada=shoppingCart[i].cantidadAgregada-1;
-                shoppingCart[i].stock=shoppingCart[i].stock+1;
-            }else{
-                shoppingCart.splice(i,1);
+            if (product.cantidadAgregada > 1) {
+                shoppingCart[i].cantidadAgregada = shoppingCart[i].cantidadAgregada - 1;
+                shoppingCart[i].stock = shoppingCart[i].stock + 1;
+            } else {
+                shoppingCart.splice(i, 1);
             }
-        } 
+        }
     }
     localStorage.setItem("shoppingCart", JSON.stringify(shoppingCart));
     showCarrito(JSON.parse(localStorage.getItem("shoppingCart")));
     cardlength();
 }
+
 function cardlength() {
     let aux = shoppingCart.length;
     $("#cart-icon-b").text("Carrito " + aux);
 }
+
 function showCarrito(shoppingCart) {
     if (localStorage.getItem("shoppingCart") != null) {
         shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
@@ -223,25 +230,29 @@ function showCarrito(shoppingCart) {
     }
 }
 //index its a flag variable, if it isnt in index html, index=null,else  equals something different than null
-function imInCarrito(){
-    return (document.getElementById("contenedor-de-filas-carrito")!=null)
+function imInCarrito() {
+    return (document.getElementById("contenedor-de-filas-carrito") != null)
 }
-function imInIndex(){
-    return (document.getElementById("gallery-products")!=null)
+
+function imInIndex() {
+    return (document.getElementById("gallery-products") != null)
 }
-function showCardsIndex(){
+
+function showCardsIndex() {
     if (imInIndex()) {
         cardCarusel('row-One', dataBaseMasVendidos);
         cardCarusel('row-Two', dataBaseDestacados);
     }
 }
-function logIn(){
-    return (logInVariable==1);
+
+function logIn() {
+    return (logInVariable == 1);
 }
-function confirmTransaction(){
+
+function confirmTransaction() {
     let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
     if (!logIn()) {
-        divDeCompra.innerHTML=`
+        divDeCompra.innerHTML = `
         <div class="container contenedor-de-filas" id="contenedor-de-filas-carrito">
         <div class="row align-items-center fila__producto__titulo ">
         <h4>Ingrese sesión para poder finalizar la compra!</h4>
@@ -258,38 +269,97 @@ function confirmTransaction(){
     `;
     }
 }
-function takingDataUserAndCheck(){
-    let newUser=document.getElementById("userName");
-    let newUserValue=newUser.value;
-    let userSurname=document.getElementById("userSurname");
-    // let userSurnameValue=userSurname.childNodes[4].nodeValue;
-
-    let userDni=document.getElementById("userDni");
-    // let userDniValue=userDni.firstChild.nodeValue;
-    let userEmail=document.getElementById("userEmail");
-    // let userEmailValue=userEmail.firstChild.nodeValue;
-    let userAge=document.getElementById("userAge");
-    // let userAgeValue=userAge.firstChild.nodeValue;
-    let userNickname=document.getElementById("userNickname");
-    // let userNicknameValue=userNickname.firstChild.nodeValue;
-    let userPassword1=document.getElementById("userPassword1");
-    // let userPassword1Value=userPassword1.firstChild.nodeValue
-    let userPassword2=document.getElementById("userPassword2");
-    // let userPassword2Value=userPassword2.firstChild.nodeValue;
-    console.log(newUserValue.length);
-    if (!(newUser.value.length>3 && newUser.value.length<40)) {
-        addCrossCreateUser(newUser);
-    
-    }     
-    
+function imInCreateUser(){
+   return  (document.getElementById("createUser") != null)
 }
-let usuario=[]
-let password=[]
-let shoppingCart = [];
-let logInVariable=[];
+function initiateSesion(){
+    console.log(dataUser);
+    let userNickname=document.getElementById("userNicknameLogIn").value;
+    let userPassworde=document.getElementById("userPasswordLogIn").value;
+    dataUser = JSON.parse(localStorage.getItem("dataUser"));
 
-if (localStorage.getItem("logInVariable") != null) {
-    shoppingCart = JSON.parse(localStorage.getItem("logInVariable"));
+}
+function takingDataUserAndCheck() {
+    let newUser = document.getElementById("userName");
+    let userSurname = document.getElementById("userSurname");
+    let userDni = document.getElementById("userDni");
+    let userEmail=document.getElementById("userEmail");
+    let userAge=document.getElementById("userAge");
+    let userNickname=document.getElementById("userNickname");
+    let userPassword1=document.getElementById("userPassword1");
+    let userPassword2=document.getElementById("userPassword2");
+    let flag=0;
+    if (!(newUser.value.length > 3 && newUser.value.length < 40)) {
+        addCrossCreateUser("userNameI");
+        flag=1;
+    }
+    if (!(userSurname.value.length > 3 && userSurname.value.length < 40)) {
+        addCrossCreateUser("userSurnameI");
+        flag=1;
+    }
+    if (!(userSurname.value.length > 3 && userSurname.value.length < 40)) {
+        addCrossCreateUser("userSurnameI");
+        flag=1;
+    }
+    if (userDni.value == "") {
+        addCrossCreateUser("userDniI");
+        flag=1;
+    }
+    if (userAge.value == "" || userAge.value>130 || userAge.value<0) {
+        addCrossCreateUser("userAgeI");
+        flag=1;
+    }
+    if(userEmail.value.indexOf("@gmail.com")==-1){
+        console.log("no es una dirección de gmail.com")
+        addCrossCreateUser("userEmailI");
+        flag=1;
+    }else{
+        //to see if the email is pedro@gmail.com and not @gmail.compedro 
+        let large=userEmail.value.length;
+        let largeminusemail=large-10;
+        let gmailpart=userEmail.value.slice(largeminusemail);
+        if(gmailpart!= "@gmail.com")
+        {
+            addCrossCreateUser("userEmailI");
+            flag=1;
+        }
+    }
+    if (userNickname.value.length < 3) {
+        addCrossCreateUser("userNicknameI");
+        flag=1;
+        
+    }
+    if (userPassword2.value.length <8) {
+        flag=1;
+        addCrossCreateUser("userPassword2I");
+   }
+   if(userPassword1.value !== userPassword2.value){
+       addCrossCreateUser("userPassword1I")
+       flag=1;
+   }
+   console.log(flag)
+     if (flag==1) {
+     document.getElementById("botondeCrearUsuario").style.background= "red";
+    }else{
+     document.getElementById("botondeCrearUsuario").style.background= "green";
+     dataUser=[newUser.value,userSurname.value,userDni.value,userEmail.value,userAge.value,userNickname.value,userPassword1.value,userPassword2.value]
+     localStorage.setItem("dataUser", JSON.stringify(dataUser) )
+     console.log(dataUser);
+     setTimeout(function userCreated(){
+         document.getElementById("createUser").innerHTML= `<label>Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a>`
+     },3000);
+    }
+}
+let usuario = []
+let password = []
+let shoppingCart = [];
+let logInVariable = [];
+let dataUser=[];
+if (localStorage.getItem("dataUser") != null && imInCreateUser()) {
+    dataUser = JSON.parse(localStorage.getItem("dataUser"));
+    document.getElementById("createUser").innerHTML= `<label>Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a>`;
+}else if(localStorage.getItem("dataUser")!=null){
+    dataUser = JSON.parse(localStorage.getItem("dataUser"));
 }
 if (localStorage.getItem("usuario") != null) {
     shoppingCart = JSON.parse(localStorage.getItem("usuario"));
@@ -304,6 +374,4 @@ showCardsIndex();
 cardlength();
 if (imInCarrito()) {
     showCarrito(shoppingCart);
-    console.log("aloja");
 }
-

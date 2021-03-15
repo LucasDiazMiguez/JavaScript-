@@ -10,14 +10,14 @@
         <link rel="Shortcut Icon" href="imagenes/Rovel.png" type="image/jpg">
 
           <!-- bootstrap and jquery -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-          <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.css">
-          <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
+          <link rel="stylesheet" href="bootstrap-5.0.0-beta2-dist/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <script src="bootstrap-5.0.0-beta2-dist/js/bootstrap.min.js"> </script>
           <!-- stylesheets -->
       
           <link rel="stylesheet" href="css/stylesheet.css">
           <!-- script fontawesome -->
-          <script src="https://kit.fontawesome.com/357d076d0b.js" crossorigin="anonymous"></script>
+          <script src="https://kit.fontawesome.com/bf072d049e.js" crossorigin="anonymous"></script>
           <!-- google fonts -->
           <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
           <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -181,7 +181,7 @@
         </section>
     </header>
 
-    <div class="container contecrearusuario  justify-content-start ">
+    <div id="createUser" class="container contecrearusuario  justify-content-start ">
         <!-- TITULO -->
         <div class="row justify-content-start ">
             <h2 id="crear-un-usuario">Registrate.</h2>
@@ -198,19 +198,19 @@
                     <div class="col-sm-5 nowrap " >
                         <label for="apellidoDeLaPersona">Apellido</label>
                         <input type="text" id="userSurname" class="inputCreateUser" name="apellidoDeLaPersona" required placeholder="Dominguez">
-                        <i  class="fas fa-times normalField" id="userSurnameI"></i>
+                        <i  class=" fas fa-times normalField" id="userSurnameI"></i>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-sm-5 nowrap ">
                         <label for="DNIDeLaPersona">DNI</label>
-                        <input type="" id="userDni" class="inputCreateUser" name="DNIDeLaPersona" placeholder="41954782" required>
-                        <i id="userDniI" class="fas fa-times normalField"></i>
+                        <input type="number" id="userDni" class="inputCreateUser" name="DNIDeLaPersona" placeholder="41954782" required>
+                        <i id="userDniI" class=" fas fa-times normalField"></i>
                     </div>
                     <div class="col-sm-5 nowrap ">
                         <label for="emailDeLaPersona">Email</label>
-                        <input type="email"id="userEmail" class="inputCreateUser" name="emailDeLaPersona" required placeholder="pedrodominguez@gmail.com">
-                        <i  id="userEmailI" class="fas fa-times normalField"></i>
+                        <input type="email"id="userEmail" class="inputCreateUser" name="emailDeLaPersona" required placeholder="pedro@gmail.com">
+                        <i  id="userEmailI" class=" fas fa-times normalField"></i>
                     </div>
                 </div>
                 <div class="row ">
@@ -228,26 +228,26 @@
                     <div class="col-sm-5 nowrap ">
                         <label for="edadDeLaPersona">Edad</label>
                         <input type="number" id="userAge" class="inputCreateUser" name="edadDeLaPersona" required placeholder="30">
-                        <i  id="userAgeI" class="fas fa-times normalField"></i>    
+                        <i  id="userAgeI" class=" fas fa-times normalField"></i>    
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-sm-5 nowrap" id="userNickname">
+                    <div class="col-sm-5 nowrap">
                         <label for="nombreDeUsurioDeLaPersona">Nombre de Usuario</label>
                         <input  id="userNickname" type="text" class="inputCreateUser" name="nombreDeUsurioDeLaPersona" required placeholder="Pedritoelmascapo123">
-                        <i   id="userNicknameI"class="fas fa-times normalField"></i>
+                        <i   id="userNicknameI"class=" fas fa-times normalField"></i>
                     </div>
                     <div class="col-sm-5 nowrap">
                         <label for="repetirlaPasswordDeLaPersona">Repetir la Contraseña</label>
                         <input type="password" id="userPassword1" class="inputCreateUser" name="repetirlaPasswordDeLaPersona" required>
-                        <i id="userPassword1I" class="fas fa-times normalField"></i>
+                        <i id="userPassword1I" class=" fas fa-times normalField"></i>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-sm-5 nowrap" >
                         <label for="passwordDeLaPersona">Contraseña</label>
                         <input type="password" id="userPassword2" class="inputCreateUser" name="passwordDeLaPersona" required placeholder="estanoesmicontraseña">
-                        <i  class="fas fa-times normalField" id="userPassword2I"></i>
+                        <i  class=" fas fa-times normalField" id="userPassword2I"></i>
                     </div>
 
                 </div>
@@ -319,9 +319,7 @@
     </footer>
     
 </body>
-<script src="js/jquery-3.5.1.js"></script>
 <script src="js/main.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </html>
 <!-- <div class="row justify-content-center">
