@@ -1,5 +1,7 @@
-// TODO  We are going to save all the data of the page Crear Usuario in the localStorage. Then if the user logs out, he only needs the password and the user to log in.
-//TODO When the user completes  the create user page, he is already signed in.
+// TODO  We are going to save all the data of the page Crear Usuario in the localStorage. Then if the user logs out, he only needs the password and the user to log in.//when the user changes to a page like index or carrito, the iniciar sesión data deletes itself and u have to login again, but the user doesn´t know that(or I hope it doesn´t)
+
+
+
 //TODO in the right column we add a shopping cart with all the items displayed
 //TODO After the user completes the log-in requiere, then the  user direction appears. The first option is going to be the address used to create the user, and the another field that says "another"
 // TODO  Then we make a How do u want to pay cart 
@@ -275,9 +277,14 @@ function imInCreateUser(){
 function initiateSesion(){
     console.log(dataUser);
     let userNickname=document.getElementById("userNicknameLogIn").value;
-    let userPassworde=document.getElementById("userPasswordLogIn").value;
+    let userPassword=document.getElementById("userPasswordLogIn").value;
     dataUser = JSON.parse(localStorage.getItem("dataUser"));
-
+    console.log(dataUser);
+    if (userNickname != dataUser[5] || userPassword != dataUser[6]) {
+        console.log("usuario o contraseña erróneas")
+    }else{
+        document.getElementById("iniatiateSesion").innerHTML=` <h1>iniciaste sesion        <i class="fas fa-user-check"></i> <a href="index.html"></a></h1>`
+    }
 }
 function takingDataUserAndCheck() {
     let newUser = document.getElementById("userName");
