@@ -94,7 +94,8 @@ function addCross(product){
     },1000);
 }
 function addCrossCreateUser(id){
-    let idi=document.getElementById(id);
+    console.log("id"+"I");
+    let idi=document.getElementById(id+"I");
     idi.classList.remove("normal");
     idi.classList.add("animation-class");
     setTimeout(function(){
@@ -259,30 +260,28 @@ function confirmTransaction(){
 }
 function takingDataUserAndCheck(){
     let newUser=document.getElementById("userName");
-
-    let newUserValue=newUser.childNodes[4].nodeValue;
-    console.log(newUser.childNodes)
-    console.log(newUserValue.length)
+    let newUserValue=newUser.value;
     let userSurname=document.getElementById("userSurname");
-    let userSurnameValue=userSurname.childNodes[4].nodeValue;
+    // let userSurnameValue=userSurname.childNodes[4].nodeValue;
 
     let userDni=document.getElementById("userDni");
-    let userDniValue=userDni.firstChild.nodeValue;
+    // let userDniValue=userDni.firstChild.nodeValue;
     let userEmail=document.getElementById("userEmail");
-    let userEmailValue=userEmail.firstChild.nodeValue;
+    // let userEmailValue=userEmail.firstChild.nodeValue;
     let userAge=document.getElementById("userAge");
-    let userAgeValue=userAge.firstChild.nodeValue;
+    // let userAgeValue=userAge.firstChild.nodeValue;
     let userNickname=document.getElementById("userNickname");
-    let userNicknameValue=userNickname.firstChild.nodeValue;
+    // let userNicknameValue=userNickname.firstChild.nodeValue;
     let userPassword1=document.getElementById("userPassword1");
-    let userPassword1Value=userPassword1.firstChild.nodeValue
+    // let userPassword1Value=userPassword1.firstChild.nodeValue
     let userPassword2=document.getElementById("userPassword2");
-    let userPassword2Value=userPassword2.firstChild.nodeValue;
-    // if ((5<newUserValue.length<40)) {
-        // addCrossCreateUser(newUser.firstChild);
-    // }     
-    // if (!(3<userSurnameValue.length<40)) {
-    // }
+    // let userPassword2Value=userPassword2.firstChild.nodeValue;
+    console.log(newUserValue.length);
+    if (!(newUser.value.length>3 && newUser.value.length<40)) {
+        addCrossCreateUser(newUser);
+    
+    }     
+    
 }
 let usuario=[]
 let password=[]
