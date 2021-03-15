@@ -2,7 +2,7 @@
 // TODO  We are going to save all the data of the page Crear Usuario in the localStorage. Then if the user logs out, he only needs the password and the user to log in.
 //TODO When the user completes  the create user page, he is already signed in.
 //TODO in the right column we add a shopping cart with all the items displayed
-//TODO After the user completes the log in reequiere, then the  user direction appears. The first option is going to be the address used to create the user, and the another field that says "another"
+//TODO After the user completes the log-in requiere, then the  user direction appears. The first option is going to be the address used to create the user, and the another field that says "another"
 // TODO  Then we make a How do u want to pay cart 
 // TODO  Then we show the user how he is going to pay, the direction , the items , and a button that says confirm transaction.
 // TODO  also we need to use the mercado pago API
@@ -86,6 +86,15 @@ function noMoreStock(product){
 }
 function addCross(product){
     let idi=document.getElementById(product.id+"cross");
+    idi.classList.remove("normal");
+    idi.classList.add("animation-class");
+    setTimeout(function(){
+        idi.classList.remove("animation-class");
+        idi.classList.add("normal");
+    },1000);
+}
+function addCrossCreateUser(id){
+    let idi=document.getElementById(id);
     idi.classList.remove("normal");
     idi.classList.add("animation-class");
     setTimeout(function(){
@@ -213,13 +222,11 @@ function showCarrito(shoppingCart) {
     }
 }
 //index its a flag variable, if it isnt in index html, index=null,else  equals something different than null
+function imInCarrito(){
+    return (document.getElementById("contenedor-de-filas-carrito")!=null)
+}
 function imInIndex(){
-    let index = document.getElementById("gallery-products");
-    if ((index) != null) {
-    return true;
-    }else{
-    return false;
-    }
+    return (document.getElementById("gallery-products")!=null)
 }
 function showCardsIndex(){
     if (imInIndex()) {
@@ -250,7 +257,33 @@ function confirmTransaction(){
     `;
     }
 }
+function takingDataUserAndCheck(){
+    let newUser=document.getElementById("userName");
 
+    let newUserValue=newUser.childNodes[4].nodeValue;
+    console.log(newUser.childNodes)
+    console.log(newUserValue.length)
+    let userSurname=document.getElementById("userSurname");
+    let userSurnameValue=userSurname.childNodes[4].nodeValue;
+
+    let userDni=document.getElementById("userDni");
+    let userDniValue=userDni.firstChild.nodeValue;
+    let userEmail=document.getElementById("userEmail");
+    let userEmailValue=userEmail.firstChild.nodeValue;
+    let userAge=document.getElementById("userAge");
+    let userAgeValue=userAge.firstChild.nodeValue;
+    let userNickname=document.getElementById("userNickname");
+    let userNicknameValue=userNickname.firstChild.nodeValue;
+    let userPassword1=document.getElementById("userPassword1");
+    let userPassword1Value=userPassword1.firstChild.nodeValue
+    let userPassword2=document.getElementById("userPassword2");
+    let userPassword2Value=userPassword2.firstChild.nodeValue;
+    // if ((5<newUserValue.length<40)) {
+        // addCrossCreateUser(newUser.firstChild);
+    // }     
+    // if (!(3<userSurnameValue.length<40)) {
+    // }
+}
 let usuario=[]
 let password=[]
 let shoppingCart = [];
@@ -269,76 +302,9 @@ if (localStorage.getItem("shoppingCart") != null) {
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
 }
 showCardsIndex();
-if (!imInIndex()) {
+cardlength();
+if (imInCarrito()) {
     showCarrito(shoppingCart);
+    console.log("aloja");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const baseDatos = [
-//     { imagen: "23232", tipo: "banner", precio: 900 },
-//     { imagen: "23232", tipo: "poster", precio: 900 },
-//   ];
-//   let acumuladorDeBanners = ``;
-//   let acumuladorDePosters = ``;
-//   for (i = 0; i < baseDatos.length; i++) {
-//     if (baseDatos[i].tipo === "banner") {
-//       acumuladorDeBanners += `
-//       <div>    
-//       <div class="card" style="width: 30rem">
-//       <img
-//       src="${baseDatos[i].imagen}"
-//       class="card-img-top"
-//       alt="..."
-//       />
-//       <div class="card-body">
-//       <h3>${baseDatos[i].tipo}</h3>
-//       <p class="card-text"><h5>$${baseDatos[i].precio}</h5></p>
-//       <button href="#!" class="btn btn-primary" onclick='sumar(${JSON.stringify(
-//         baseDatos[i]
-//       )})'>  :carrito_de_compras: Agregar</button>  
-//       <button href="#" class="btn btn-primary" onclick='borrarProd(${JSON.stringify(
-//         baseDatos[i]
-//       )})'>  :x:Quitar del carrito</button>
-//       </div>
-//       </div>
-//       `;
-//     } else if (baseDatos[i].tipo === "poster") {
-//       acumuladorDePosters += `
-//       <div>    
-//       <div class="card" style="width: 30rem">
-//       <img
-//       src="${baseDatos[i].imagen}"
-//       class="card-img-top"
-//       alt="..."
-//       />
-//       <div class="card-body">
-//       <h3>${baseDatos[i].tipo}</h3>
-//       <p class="card-text"><h5>$${baseDatos[i].precio}</h5></p>
-//       <button href="#!" class="btn btn-primary" onclick='sumar(${JSON.stringify(
-//         baseDatos[i]
-//       )})'>  :carrito_de_compras: Agregar</button>  
-//       <button href="#" class="btn btn-primary" onclick='borrarProd(${JSON.stringify(
-//         baseDatos[i]
-//       )})'>  :x:Quitar del carrito</button>
-//       </div>
-//       </div>
-//       `;
-//     }
-//   }
-//   console.log(acumuladorDeCuardernos);
-//   document.getElementById("productos").innerHTML = acumuladorDeBanners;
-//   document.getElementById("producto-posters").innerHTML = acumuladorDePosters;

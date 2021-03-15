@@ -7,19 +7,32 @@
     <title>crear usuario</title>
     <meta name="description"
         content="Crea un usuario en BRAND y unite a nuestra familia. Sé el primero en enterarte de descuentos únicos!">
-    <link rel="Shortcut Icon" href="imagenes/Rovel.png" type="image/jpg">
+        <link rel="Shortcut Icon" href="imagenes/Rovel.png" type="image/jpg">
 
-    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.css">
-    <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> 
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <link rel="stylesheet" href="css/stylesheet.css">
-    <script src="https://kit.fontawesome.com/357d076d0b.js" crossorigin="anonymous"></script>
-    <meta name="keywords" content=" Crea un usuario., Registrate, BRAND, Ingresar" />
+          <!-- bootstrap and jquery -->
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.css">
+          <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
+          <!-- stylesheets -->
+      
+          <link rel="stylesheet" href="css/stylesheet.css">
+          <!-- script fontawesome -->
+          <script src="https://kit.fontawesome.com/357d076d0b.js" crossorigin="anonymous"></script>
+          <!-- google fonts -->
+          <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+          <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@700&display=swap" rel="stylesheet">
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+          <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+          <link href="https://fonts.googleapis.com/css2?family=Anton&family=Balsamiq+Sans:wght@700&display=swap"
+              rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+      
+
 
 </head>
 
@@ -177,62 +190,70 @@
         <div class="row justify-content-center formulario ">
             <div class="container">
                 <div class="row ">
-                    <div class="col-sm-5 nowrap">
+                    <div class="col-sm-5 nowrap" id="userName">
                         <label for="nombreDeLaPersona">Nombre</label>
-                        <input type="text" name="nombreDeLaPersona" required placeholder="Pedro">
+                        <input type="text" class="inputCreateUser" name="nombreDeLaPersona" required placeholder="Pedro">
+                        <i  class="fas fa-times normalField"></i>
                     </div>
-                    <div class="col-sm-5 nowrap ">
+                    <div class="col-sm-5 nowrap " id="userSurname">
                         <label for="apellidoDeLaPersona">Apellido</label>
-                        <input type="text" name="apellidoDeLaPersona" required placeholder="Dominguez">
+                        <input type="text" class="inputCreateUser" name="apellidoDeLaPersona" required placeholder="Dominguez">
+                        <i  class="fas fa-times normalField"></i>
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-sm-5 nowrap">
+                    <div class="col-sm-5 nowrap "id="userDni">
                         <label for="DNIDeLaPersona">DNI</label>
-                        <input type="" name="DNIDeLaPersona" placeholder="41954782" required>
+                        <input type=""  class="inputCreateUser" name="DNIDeLaPersona" placeholder="41954782" required>
+                        <i  class="fas fa-times normalField"></i>
                     </div>
-                    <div class="col-sm-5 nowrap ">
+                    <div class="col-sm-5 nowrap " id="userEmail">
                         <label for="emailDeLaPersona">Email</label>
-                        <input type="email" name="emailDeLaPersona" required placeholder="pedrodominguez@gmail.com">
+                        <input type="email" class="inputCreateUser" name="emailDeLaPersona" required placeholder="pedrodominguez@gmail.com">
+                        <i  class="fas fa-times normalField"></i>
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-sm-5 nowrap">
+                    <div class="col-sm-5 nowrap" id="userSex" >
                         <section>
                             <label for="sexo">Sexo</label>
                             <br>
-                            <select name="sexo" id="">
+                            <select class="inputCreateUser" name="sexo" id="userSex">
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
                                 <option value="NI">Otro</option>
                             </select>
                         </section>
                     </div>
-                    <div class="col-sm-5 nowrap ">
+                    <div class="col-sm-5 nowrap "id="userAge">
                         <label for="edadDeLaPersona">Edad</label>
-                        <input type="number" name="edadDeLaPersona" required placeholder="30">
+                        <input type="number"  class="inputCreateUser" name="edadDeLaPersona" required placeholder="30">
+                        <i  class="fas fa-times normalField"></i>    
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-sm-5 nowrap">
+                    <div class="col-sm-5 nowrap" id="userNickname">
                         <label for="nombreDeUsurioDeLaPersona">Nombre de Usuario</label>
-                        <input type="text" name="nombreDeUsurioDeLaPersona" required placeholder="Pedritoelmascapo123">
+                        <input type="text" class="inputCreateUser" name="nombreDeUsurioDeLaPersona" required placeholder="Pedritoelmascapo123">
+                        <i  class="fas fa-times normalField"></i>
                     </div>
-                    <div class="col-sm-5 nowrap">
+                    <div class="col-sm-5 nowrap"id="userPassword1">
                         <label for="repetirlaPasswordDeLaPersona">Repetir la Contraseña</label>
-                        <input type="password" name="repetirlaPasswordDeLaPersona" required>
+                        <input type="password"  class="inputCreateUser" name="repetirlaPasswordDeLaPersona" required>
+                        <i  class="fas fa-times normalField"></i>
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-sm-5 nowrap">
+                    <div class="col-sm-5 nowrap" id="userPassword2">
                         <label for="passwordDeLaPersona">Contraseña</label>
-                        <input type="password" name="passwordDeLaPersona" required placeholder="estanoesmicontraseña">
+                        <input type="password"  class="inputCreateUser" name="passwordDeLaPersona" required placeholder="estanoesmicontraseña">
+                        <i  class="fas fa-times normalField"></i>
                     </div>
 
                 </div>
                 <!-- BOTON DE CREAER USUARIO -->
                 <div class="row justify-content-center align-items-center">
-                    <input id="botondeCrearUsuario" type="submit" value="Crear Usuario">
+                    <input id="botondeCrearUsuario" onclick='takingDataUserAndCheck()' type="submit" value="Crear Usuario">
                 </div>
             </div>
 
@@ -296,8 +317,13 @@
             </div>
         </div>
     </footer>
-
+    
 </body>
+<script src="js/jquery-3.5.1.js"></script>
+<script src="js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</html>
 <!-- <div class="row justify-content-center">
                         <div class="col-sm-6">
                             <label for="DNIDeLaPersona">DNI</label>

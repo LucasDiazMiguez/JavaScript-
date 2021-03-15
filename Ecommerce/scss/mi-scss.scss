@@ -1378,7 +1378,18 @@ body.crearusuario {
         padding-bottom: 50px;
         color: white;
     }
-
+    .wrongField{
+        position: relative;
+        top: -25px;
+        right: -213px;
+        opacity: 1;
+    }
+    .normalField{
+        position: relative;
+        opacity: 0;
+        top: -25px;
+        right: -100px;
+    }
     .contecrearusuario {
         border-radius: 10px;
         margin-top: 90px;
@@ -1507,6 +1518,7 @@ body.crearusuario {
 }
 
 body.compras {
+    
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     background-color: white;

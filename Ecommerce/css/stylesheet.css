@@ -1041,6 +1041,18 @@ body.crearusuario h2 {
   padding-bottom: 50px;
   color: white;
 }
+body.crearusuario .wrongField {
+  position: relative;
+  top: -25px;
+  right: -213px;
+  opacity: 1;
+}
+body.crearusuario .normalField {
+  position: relative;
+  opacity: 0;
+  top: -25px;
+  right: -100px;
+}
 body.crearusuario .contecrearusuario {
   border-radius: 10px;
   margin-top: 90px;
