@@ -1,7 +1,6 @@
 // TODO  We are going to save all the data of the page Crear Usuario in the localStorage. Then if the user logs out, he only needs the password and the user to log in.//when the user changes to a page like index or carrito, the iniciar sesión data deletes itself and u have to login again, but the user doesn´t know that(or I hope it doesn´t)
-
-
-
+// TODO usar funciones de array
+// TODO klasjldfjaksldf
 //TODO in the right column we add a shopping cart with all the items displayed
 //TODO After the user completes the log-in requiere, then the  user direction appears. The first option is going to be the address used to create the user, and the another field that says "another"
 // TODO  Then we make a How do u want to pay cart 
@@ -22,7 +21,15 @@ class Products {
         this.cantidadAgregada = cantidadAgregada;
     }
 }
-
+class ProductsForMercadoPago {
+    constructor(title,description, quantity, currency_id, unit_price) {
+        this.title = title;
+        this.quantity = quantity;
+        this.currency_id = currency_id;
+        this.unit_price = unit_price;
+        this.description = description;
+    }
+}
 let producto1 = new Products(4999, 1, "imagenes/imagenesInicio/camara-destacada.webp", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "000000001", "none", 0);
 let producto2 = new Products(15999, 20, "imagenes/imagenesInicio/gabinetegamer.webp", "Gabinete Sentey Z20 Lite - Led Rgb", "Gabinete Sentey Z20 Lite - Led Rgb", "000000002", "sentey", 0);
 let producto3 = new Products(150999, 10, "imagenes/imagenesInicio/GPU.webp", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "000000003", "nvidia", 0);
@@ -251,26 +258,26 @@ function logIn() {
     return (logInVariable == 1);
 }
 
-function confirmTransaction() {
-    let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
-    if (!logIn()) {
-        divDeCompra.innerHTML = `
-        <div class="container contenedor-de-filas" id="contenedor-de-filas-carrito">
-        <div class="row align-items-center fila__producto__titulo ">
-        <h4>Ingrese sesión para poder finalizar la compra!</h4>
-        </div>
-        </div>
-        <a href="iniciodesesion.html" class="menu__skinny__window"><button class=""><i
-                                    class="fas fa-user-circle"></i></button></a>
-                        <a href="iniciodesesion.html" class="menu__big__window">Iniciar Sesión</a>
-                        <!-- espacio -->
-                        <a href="crearusuario.html" class="menu__skinny__window"><button class=""><i
-                                    class="fas fa-user-plus"></i></button></a>
-                        <a href="crearusuario.html" class="menu__big__window">Crear Usuario</a>
-                        <!-- espacio -->
-    `;
-    }
-}
+// function confirmTransaction() {
+//     let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
+//     if (!logIn()) {
+//         divDeCompra.innerHTML = `
+//         <div class="container contenedor-de-filas" id="contenedor-de-filas-carrito">
+//         <div class="row align-items-center fila__producto__titulo ">
+//         <h4>Ingrese sesión para poder finalizar la compra!</h4>
+//         </div>
+//         </div>
+//         <a href="iniciodesesion.html" class="menu__skinny__window"><button class=""><i
+//                                     class="fas fa-user-circle"></i></button></a>
+//                         <a href="iniciodesesion.html" class="menu__big__window">Iniciar Sesión</a>
+//                         <!-- espacio -->
+//                         <a href="crearusuario.html" class="menu__skinny__window"><button class=""><i
+//                                     class="fas fa-user-plus"></i></button></a>
+//                         <a href="crearusuario.html" class="menu__big__window">Crear Usuario</a>
+//                         <!-- espacio -->
+//     `;
+//     }
+// }
 function imInCreateUser(){
    return  (document.getElementById("createUser") != null)
 }
@@ -355,6 +362,38 @@ function takingDataUserAndCheck() {
      setTimeout(function userCreated(){
          document.getElementById("createUser").innerHTML= `<label>Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a>`
      },3000);
+    }
+}
+
+function shoppingCartJSON()
+{
+    let shoppingCartMercadoPago=[];
+    for (let i = 0; i < shoppingCart.length; i++) {
+            shoppingCartMercadoPago[i]= new ProductsForMercadoPago(shoppingCart[i].name,shoppingCart[i].description,shoppingCart[i].cantidadAgregada,"ARS",shoppingCart[i].price)
+            }
+            console.log(shoppingCartMercadoPago) 
+            return JSON.stringify(shoppingCartMercadoPago)
+}
+function confirmTransaction(){
+    if (localStorage.getItem("dataUser")!=null) {
+        
+        console.log(shoppingCartJSON())
+      
+        var settings = {
+            "url": "https://api.mercadopago.com/checkout/preferences?category=electronica&time=today",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+              "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386",
+              "Content-Type": "application/json"
+            },
+            // "data": JSON.stringify({"items":[{"title":"Disco sólido interno Kingston SA400S37/480G 480GB","quantity":1,"currency_id":"ARS","unit_price":5999,"description":"Disco sólido interno Kingston SA400S37/480G 480GB"}]}),
+            "data": JSON.stringify({"items":shoppingCartJSON()}),
+          };
+          
+          $.ajax(settings).done(function (response) {
+            console.log(response);
+          });
     }
 }
 let usuario = []
