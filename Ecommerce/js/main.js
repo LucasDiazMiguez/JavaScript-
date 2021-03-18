@@ -1,11 +1,5 @@
 // TODO  We are going to save all the data of the page Crear Usuario in the localStorage. Then if the user logs out, he only needs the password and the user to log in.//when the user changes to a page like index or carrito, the iniciar sesión data deletes itself and u have to login again, but the user doesn´t know that(or I hope it doesn´t)
 // TODO usar funciones de array
-// TODO klasjldfjaksldf
-//TODO in the right column we add a shopping cart with all the items displayed
-//TODO After the user completes the log-in requiere, then the  user direction appears. The first option is going to be the address used to create the user, and the another field that says "another"
-// TODO  Then we make a How do u want to pay cart 
-// TODO  Then we show the user how he is going to pay, the direction , the items , and a button that says confirm transaction.
-// TODO  also we need to use the mercado pago API
 // TODO  after we show a tick animation and then we delete the shopping cart.
 // TODO  After we finished that we can add buttons to the step mentioned above for the user to travel between the form fields or to complete again the data loged in.
 // TODO after the user logs in we need to delete all the  acess to the  create user and log in page
@@ -365,20 +359,56 @@ function takingDataUserAndCheck() {
     }
 }
 
-function shoppingCartJSON()
+function shoppingCartForMercadoPago()
 {
     let shoppingCartMercadoPago=[];
-    let  objecttime={}
     for (let i = 0; i < shoppingCart.length; i++) {
-        // constructor(title,description, quantity, currency_id, unit_price) {
             shoppingCartMercadoPago[i]= {title:shoppingCart[i].name,description:shoppingCart[i].description,quantity:shoppingCart[i].cantidadAgregada,currency_id:"ARS",unit_price:shoppingCart[i].price}
             }
             console.log(shoppingCartMercadoPago) 
             return (shoppingCartMercadoPago)
 }
+function checkCorrectTransaction(){
+    var settings = {
+        "url": "https://api.mercadopago.com/v1/payments/search",
+        "method": "GET",
+        "timeout": 0,
+        "headers": {
+          "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386"
+        },
+      };
+      
+      $.ajax(settings).done(function (response) {
+          console.log("esta me interesa")
+          let paysQuantityMP=response.paging.total;
+          let  paysQuantity=JSON.parse(localStorage.getItem("paysQuantityMP"))
+          console.log(( paysQuantity === paysQuantityMP))
+          if ( paysQuantity == paysQuantityMP) {
+              console.log("compra no realizada")
+          }
+          
+      });
+
+} 
 function confirmTransaction(){
-    if (localStorage.getItem("dataUser")!=null) {
-        
+
+    var settings = {
+        "url": "https://api.mercadopago.com/v1/payments/search",
+        "method": "GET",
+        "timeout": 0,
+        "headers": {
+          "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386"
+        },
+      };
+      
+      $.ajax(settings).done(function (response) {
+          console.log(response.paging.total);
+          let paysQuantityMP=response.paging.total
+          localStorage.setItem("paysQuantityMP", JSON.stringify(paysQuantityMP));
+          console.log("esta me interesa")
+         console.log(localStorage.getItem("paysQuantityMP"))
+      });
+
         var settings = {
             "url": "https://api.mercadopago.com/checkout/preferences?category=electronica&time=today",
             "method": "POST",
@@ -388,19 +418,20 @@ function confirmTransaction(){
               "Content-Type": "application/json"
             },
             // "data": JSON.stringify({"items":[{"title":"Disco sólido interno Kingston SA400S37/480G 480GB"}]    }),
-            // "data": JSON.stringify({"items":shoppingCartJSON()}), anda
+            "data": JSON.stringify({"items":shoppingCartForMercadoPago()}), 
           };
           
           $.ajax(settings).done(function (response) {
-            console.log(response);
-          });
-    }
+            document.getElementById("contenedor-de-filas-carrito").innerHTML=  `<div> <h2> link para terminar la operación: <a href="${response.init_point}"> Mercado pago link </a> </h2>  <button onclick='checkCorrectTransaction()'>chequear si se realizó la compra </button> </div>`
+        });
 }
 let usuario = []
 let password = []
 let shoppingCart = [];
 let logInVariable = [];
 let dataUser=[];
+let paysQuantity=[0]
+
 if (localStorage.getItem("dataUser") != null && imInCreateUser()) {
     dataUser = JSON.parse(localStorage.getItem("dataUser"));
     document.getElementById("createUser").innerHTML= `<label>Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a>`;
