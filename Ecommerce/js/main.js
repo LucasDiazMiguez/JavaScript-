@@ -368,17 +368,17 @@ function takingDataUserAndCheck() {
 function shoppingCartJSON()
 {
     let shoppingCartMercadoPago=[];
+    let  objecttime={}
     for (let i = 0; i < shoppingCart.length; i++) {
-            shoppingCartMercadoPago[i]= new ProductsForMercadoPago(shoppingCart[i].name,shoppingCart[i].description,shoppingCart[i].cantidadAgregada,"ARS",shoppingCart[i].price)
+        // constructor(title,description, quantity, currency_id, unit_price) {
+            shoppingCartMercadoPago[i]= {title:shoppingCart[i].name,description:shoppingCart[i].description,quantity:shoppingCart[i].cantidadAgregada,currency_id:"ARS",unit_price:shoppingCart[i].price}
             }
             console.log(shoppingCartMercadoPago) 
-            return JSON.stringify(shoppingCartMercadoPago)
+            return (shoppingCartMercadoPago)
 }
 function confirmTransaction(){
     if (localStorage.getItem("dataUser")!=null) {
         
-        console.log(shoppingCartJSON())
-      
         var settings = {
             "url": "https://api.mercadopago.com/checkout/preferences?category=electronica&time=today",
             "method": "POST",
@@ -387,8 +387,8 @@ function confirmTransaction(){
               "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386",
               "Content-Type": "application/json"
             },
-            // "data": JSON.stringify({"items":[{"title":"Disco sólido interno Kingston SA400S37/480G 480GB","quantity":1,"currency_id":"ARS","unit_price":5999,"description":"Disco sólido interno Kingston SA400S37/480G 480GB"}]}),
-            "data": JSON.stringify({"items":shoppingCartJSON()}),
+            // "data": JSON.stringify({"items":[{"title":"Disco sólido interno Kingston SA400S37/480G 480GB"}]    }),
+            // "data": JSON.stringify({"items":shoppingCartJSON()}), anda
           };
           
           $.ajax(settings).done(function (response) {
