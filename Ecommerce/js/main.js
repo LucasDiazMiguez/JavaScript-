@@ -252,26 +252,7 @@ function logIn() {
     return (logInVariable == 1);
 }
 
-// function confirmTransaction() {
-//     let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
-//     if (!logIn()) {
-//         divDeCompra.innerHTML = `
-//         <div class="container contenedor-de-filas" id="contenedor-de-filas-carrito">
-//         <div class="row align-items-center fila__producto__titulo ">
-//         <h4>Ingrese sesión para poder finalizar la compra!</h4>
-//         </div>
-//         </div>
-//         <a href="iniciodesesion.html" class="menu__skinny__window"><button class=""><i
-//                                     class="fas fa-user-circle"></i></button></a>
-//                         <a href="iniciodesesion.html" class="menu__big__window">Iniciar Sesión</a>
-//                         <!-- espacio -->
-//                         <a href="crearusuario.html" class="menu__skinny__window"><button class=""><i
-//                                     class="fas fa-user-plus"></i></button></a>
-//                         <a href="crearusuario.html" class="menu__big__window">Crear Usuario</a>
-//                         <!-- espacio -->
-//     `;
-//     }
-// }
+
 function imInCreateUser(){
    return  (document.getElementById("createUser") != null)
 }
@@ -374,7 +355,7 @@ function checkCorrectTransaction(){
         "method": "GET",
         "timeout": 0,
         "headers": {
-          "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386"
+          "Authorization": "Bearer TEST-8185104588992061-031600-2309f6db3ee8a481ca32af989dba4a3c-207187455"
         },
       };
       
@@ -397,12 +378,12 @@ function confirmTransaction(){
         "method": "GET",
         "timeout": 0,
         "headers": {
-          "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386"
+          "Authorization": "Bearer TEST-8185104588992061-031600-2309f6db3ee8a481ca32af989dba4a3c-207187455"
         },
       };
       
       $.ajax(settings).done(function (response) {
-          console.log(response.paging.total);
+          console.log(response);
           let paysQuantityMP=response.paging.total
           localStorage.setItem("paysQuantityMP", JSON.stringify(paysQuantityMP));
           console.log("esta me interesa")
@@ -414,7 +395,7 @@ function confirmTransaction(){
             "method": "POST",
             "timeout": 0,
             "headers": {
-              "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386",
+              "Authorization": "Bearer TEST-8185104588992061-031600-2309f6db3ee8a481ca32af989dba4a3c-207187455",
               "Content-Type": "application/json"
             },
             // "data": JSON.stringify({"items":[{"title":"Disco sólido interno Kingston SA400S37/480G 480GB"}]    }),
