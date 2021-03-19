@@ -1536,7 +1536,14 @@ body.compras {
         color: $negro;
         font-weight: bold;
     }
-
+    .show{
+        display: flex;
+        color:white;
+        justify-content: center;
+    }
+    .notShow{
+        display: none;
+    }
     .contenedor-de-filas {
         background-color: rgb(0, 0, 0);
         padding: 2px;

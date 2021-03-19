@@ -1229,6 +1229,14 @@ body.compras #item-name {
   color: Black;
   font-weight: bold;
 }
+body.compras .show {
+  display: flex;
+  color: white;
+  justify-content: center;
+}
+body.compras .notShow {
+  display: none;
+}
 body.compras .contenedor-de-filas {
   background-color: black;
   padding: 2px;

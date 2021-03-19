@@ -1,8 +1,11 @@
 // TODO  We are going to save all the data of the page Crear Usuario in the localStorage. Then if the user logs out, he only needs the password and the user to log in.//when the user changes to a page like index or carrito, the iniciar sesión data deletes itself and u have to login again, but the user doesn´t know that(or I hope it doesn´t)
+// TODO make an if that says if the user is logged in
 // TODO usar funciones de array
+// TODO  iterar la respuesta devuelta por el  servidor con if que muestre las compras que pertenecen a el usuario 
 // TODO  after we show a tick animation and then we delete the shopping cart.
 // TODO  After we finished that we can add buttons to the step mentioned above for the user to travel between the form fields or to complete again the data loged in.
 // TODO after the user logs in we need to delete all the  acess to the  create user and log in page
+// TODO I disabled the email request and the goback url in the merado pago api for testing purposes 
 class Products {
     constructor(price, stock, image, description, name, id, marca, cantidadAgregada) {
         this.price = price;
@@ -15,15 +18,7 @@ class Products {
         this.cantidadAgregada = cantidadAgregada;
     }
 }
-class ProductsForMercadoPago {
-    constructor(title,description, quantity, currency_id, unit_price) {
-        this.title = title;
-        this.quantity = quantity;
-        this.currency_id = currency_id;
-        this.unit_price = unit_price;
-        this.description = description;
-    }
-}
+
 let producto1 = new Products(4999, 1, "imagenes/imagenesInicio/camara-destacada.webp", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "Camara Web Webcam Usb Pc Full Hd 1080p Plug & Play Microfono", "000000001", "none", 0);
 let producto2 = new Products(15999, 20, "imagenes/imagenesInicio/gabinetegamer.webp", "Gabinete Sentey Z20 Lite - Led Rgb", "Gabinete Sentey Z20 Lite - Led Rgb", "000000002", "sentey", 0);
 let producto3 = new Products(150999, 10, "imagenes/imagenesInicio/GPU.webp", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "Placa Video Msi Geforce Rtx2070 Super Ventus Gp Oc 8gb Gddr", "000000003", "nvidia", 0);
@@ -175,11 +170,11 @@ function cardlength() {
 }
 
 function showCarrito(shoppingCart) {
-    if (localStorage.getItem("shoppingCart") != null) {
+    if (JSON.parse(localStorage.getItem("shoppingCart")) != null) {
         shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
         let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
         let preciototal = 0;
-        let aux = 0;
+        let aux = ` <h4>Productos en su carrito:</h4>`;
 
         for (let i = 0; i < shoppingCart.length; i++) {
             preciototal = preciototal + (shoppingCart[i].cantidadAgregada) * shoppingCart[i].price;
@@ -209,16 +204,17 @@ function showCarrito(shoppingCart) {
         }
         divDeCompra.innerHTML = aux +
             `<div class="row justify-content-around align-items-center fila__confirmar__pago">
-        <div class="col-lg-5">
+        <div id="showUserPurchasesDiv" class="col-lg-5">
+        <input onclick="showUserPurchases()" type="submit" value="Ver mis compras">
         </div>
         <div class="col-lg-3">
             <h5>TOTAL: ${preciototal} .-</h5>
         </div>
-        <div class="col-lg-3">
+        <div id="confirmTransactionDiv" class="col-lg-3">
             <input onclick='confirmTransaction()' type="submit" value="Confirmar compra">
         </div>
 
-        </div>`
+        </div>` + `<div id="mustInitiateFirst"  class="notShow row justify-content-around align-items-center fila__confirmar__pago"> <h3> usted debe iniciar sesión primero. </div>`
     }
     if (shoppingCart.length == 0) {
         // console.log("entre al else del showcarrito")
@@ -228,6 +224,7 @@ function showCarrito(shoppingCart) {
         </div>
         <div class="col-lg-7">
             <h5> No hay ningún producto en el carrito. </h5>
+            <input onclick="showUserPurchases()" type="submit" value="Ver mis compras">
         </div>
     </div>`
     }
@@ -253,179 +250,232 @@ function logIn() {
 }
 
 
-function imInCreateUser(){
-   return  (document.getElementById("createUser") != null)
+function imInCreateUser() {
+    return (document.getElementById("createUser") != null)
 }
-function initiateSesion(){
+
+function initiateSesion() {
     console.log(dataUser);
-    let userNickname=document.getElementById("userNicknameLogIn").value;
-    let userPassword=document.getElementById("userPasswordLogIn").value;
+    let userNickname = document.getElementById("userNicknameLogIn").value;
+    let userPassword = document.getElementById("userPasswordLogIn").value;
     dataUser = JSON.parse(localStorage.getItem("dataUser"));
     console.log(dataUser);
     if (userNickname != dataUser[5] || userPassword != dataUser[6]) {
         console.log("usuario o contraseña erróneas")
-    }else{
-        document.getElementById("iniatiateSesion").innerHTML=` <h1>iniciaste sesion        <i class="fas fa-user-check"></i> <a href="index.html"></a></h1>`
+    } else {
+        document.getElementById("iniatiateSesion").innerHTML = ` <h1>iniciaste sesion        <i class="fas fa-user-check"></i> <a href="index.html"></a></h1>`
     }
 }
+
 function takingDataUserAndCheck() {
     let newUser = document.getElementById("userName");
     let userSurname = document.getElementById("userSurname");
     let userDni = document.getElementById("userDni");
-    let userEmail=document.getElementById("userEmail");
-    let userAge=document.getElementById("userAge");
-    let userNickname=document.getElementById("userNickname");
-    let userPassword1=document.getElementById("userPassword1");
-    let userPassword2=document.getElementById("userPassword2");
-    let flag=0;
+    let userEmail = document.getElementById("userEmail");
+    let userAge = document.getElementById("userAge");
+    let userNickname = document.getElementById("userNickname");
+    let userPassword1 = document.getElementById("userPassword1");
+    let userPassword2 = document.getElementById("userPassword2");
+    let flag = 0;
     if (!(newUser.value.length > 3 && newUser.value.length < 40)) {
         addCrossCreateUser("userNameI");
-        flag=1;
+        flag = 1;
     }
     if (!(userSurname.value.length > 3 && userSurname.value.length < 40)) {
         addCrossCreateUser("userSurnameI");
-        flag=1;
+        flag = 1;
     }
     if (!(userSurname.value.length > 3 && userSurname.value.length < 40)) {
         addCrossCreateUser("userSurnameI");
-        flag=1;
+        flag = 1;
     }
     if (userDni.value == "") {
         addCrossCreateUser("userDniI");
-        flag=1;
+        flag = 1;
     }
-    if (userAge.value == "" || userAge.value>130 || userAge.value<0) {
+    if (userAge.value == "" || userAge.value > 130 || userAge.value < 0) {
         addCrossCreateUser("userAgeI");
-        flag=1;
+        flag = 1;
     }
-    if(userEmail.value.indexOf("@gmail.com")==-1){
-        console.log("no es una dirección de gmail.com")
-        addCrossCreateUser("userEmailI");
-        flag=1;
-    }else{
-        //to see if the email is pedro@gmail.com and not @gmail.compedro 
-        let large=userEmail.value.length;
-        let largeminusemail=large-10;
-        let gmailpart=userEmail.value.slice(largeminusemail);
-        if(gmailpart!= "@gmail.com")
-        {
-            addCrossCreateUser("userEmailI");
-            flag=1;
-        }
-    }
+    // if (userEmail.value.indexOf("@gmail.com") == -1) {
+    //     console.log("no es una dirección de gmail.com")
+    //     addCrossCreateUser("userEmailI");
+    //     flag = 1;
+    // } else {
+    //     //to see if the email is pedro@gmail.com and not @gmail.compedro 
+    //     let large = userEmail.value.length;
+    //     let largeminusemail = large - 10;
+    //     let gmailpart = userEmail.value.slice(largeminusemail);
+    //     if (gmailpart != "@gmail.com") {
+    //         addCrossCreateUser("userEmailI");
+    //         flag = 1;
+    //     }
+    // }
     if (userNickname.value.length < 3) {
         addCrossCreateUser("userNicknameI");
-        flag=1;
-        
+        flag = 1;
+
     }
-    if (userPassword2.value.length <8) {
-        flag=1;
+    if (userPassword2.value.length < 8) {
+        flag = 1;
         addCrossCreateUser("userPassword2I");
-   }
-   if(userPassword1.value !== userPassword2.value){
-       addCrossCreateUser("userPassword1I")
-       flag=1;
-   }
-   console.log(flag)
-     if (flag==1) {
-     document.getElementById("botondeCrearUsuario").style.background= "red";
-    }else{
-     document.getElementById("botondeCrearUsuario").style.background= "green";
-     dataUser=[newUser.value,userSurname.value,userDni.value,userEmail.value,userAge.value,userNickname.value,userPassword1.value,userPassword2.value]
-     localStorage.setItem("dataUser", JSON.stringify(dataUser) )
-     console.log(dataUser);
-     setTimeout(function userCreated(){
-         document.getElementById("createUser").innerHTML= `<label>Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a>`
-     },3000);
+    }
+    if (userPassword1.value !== userPassword2.value) {
+        addCrossCreateUser("userPassword1I")
+        flag = 1;
+    }
+    console.log(flag)
+    if (flag == 1) {
+        document.getElementById("botondeCrearUsuario").style.background = "red";
+    } else {
+        document.getElementById("botondeCrearUsuario").style.background = "green";
+        dataUser = [newUser.value, userSurname.value, userDni.value, userEmail.value, userAge.value, userNickname.value, userPassword1.value, userPassword2.value]
+        localStorage.setItem("dataUser", JSON.stringify(dataUser))
+        console.log(dataUser);
+        setTimeout(function userCreated() {
+            document.getElementById("createUser").innerHTML =`<label>
+            Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a></label>  <br>        
+        <label>  PODES cerrar SESION <a onclick='logOut()' href="index.html">  Cerrar sesión </a></label>
+        `
+        }, 1000);
     }
 }
 
-function shoppingCartForMercadoPago()
-{
-    let shoppingCartMercadoPago=[];
-    for (let i = 0; i < shoppingCart.length; i++) {
-            shoppingCartMercadoPago[i]= {title:shoppingCart[i].name,description:shoppingCart[i].description,quantity:shoppingCart[i].cantidadAgregada,currency_id:"ARS",unit_price:shoppingCart[i].price}
-            }
-            console.log(shoppingCartMercadoPago) 
-            return (shoppingCartMercadoPago)
+function showUserPurchases() {
+    if (JSON.parse(localStorage.getItem("dataUser")) != null) {
+
+
+        var settings = {
+            "url": "https://api.mercadopago.com/v1/payments/search",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386"
+            },
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            let dataUserInfo = JSON.parse(localStorage.getItem("dataUser"))
+            //  for (let i = 20; i < response.results.length-1; i++) {
+// TODO resulta que si pagsas con tarjeta o con efectivoz cambia la respuesta de get pago, la otra que podemos hacer es limitar solo a un medio de pago
+
+                // console.log(response.results[i].additional_info.payer.last_name + "apellido de respuesta pag")
+                // console.log(dataUserInfo[1])
+                // console.log(response.results[i].additional_info.payer.first_name)
+                // console.log(dataUserInfo[0])
+                // if (response.results[i].additional_info.payer.last_name == dataUserInfo[1] && response.results[i].additional_info.payer.first_name == dataUserInfo[0]) {
+                //      console.log("im in")
+                //  }
+
+            // }
+        });
+    } else {
+        addSentence()
+    }
 }
-function checkCorrectTransaction(){
-    var settings = {
-        "url": "https://api.mercadopago.com/v1/payments/search",
-        "method": "GET",
-        "timeout": 0,
-        "headers": {
-          "Authorization": "Bearer TEST-8185104588992061-031600-2309f6db3ee8a481ca32af989dba4a3c-207187455"
-        },
-      };
-      
-      $.ajax(settings).done(function (response) {
-          console.log("esta me interesa")
-          let paysQuantityMP=response.paging.total;
-          let  paysQuantity=JSON.parse(localStorage.getItem("paysQuantityMP"))
-          console.log(( paysQuantity === paysQuantityMP))
-          if ( paysQuantity == paysQuantityMP) {
-              console.log("compra no realizada")
-          }
-          
-      });
 
-} 
-function confirmTransaction(){
+function shoppingCartForMercadoPago() {
+    let shoppingCartMercadoPago = [];
+    for (let i = 0; i < shoppingCart.length; i++) {
+        shoppingCartMercadoPago[i] = {
+            id: shoppingCart[i].id,
+            title: shoppingCart[i].name,
+            description: shoppingCart[i].description,
+            quantity: shoppingCart[i].cantidadAgregada,
+            currency_id: "ARS",
+            unit_price: shoppingCart[i].price,
+            category_id: "tecnología"
+        }
+    }
+    console.log(shoppingCartMercadoPago)
+    return (shoppingCartMercadoPago)
+}
 
-    var settings = {
-        "url": "https://api.mercadopago.com/v1/payments/search",
-        "method": "GET",
-        "timeout": 0,
-        "headers": {
-          "Authorization": "Bearer TEST-8185104588992061-031600-2309f6db3ee8a481ca32af989dba4a3c-207187455"
-        },
-      };
-      
-      $.ajax(settings).done(function (response) {
-          console.log(response);
-          let paysQuantityMP=response.paging.total
-          localStorage.setItem("paysQuantityMP", JSON.stringify(paysQuantityMP));
-          console.log("esta me interesa")
-         console.log(localStorage.getItem("paysQuantityMP"))
-      });
+function logOut() {
+    let logOut = null
+    localStorage.setItem("dataUser", JSON.stringify(logOut))
+}
 
+function addSentence() {
+    let idi = document.getElementById("mustInitiateFirst");
+    idi.classList.remove("notShow");
+    idi.classList.add("show");
+    setTimeout(function () {
+        idi.classList.remove("show");
+        idi.classList.add("notShow");
+    }, 3000);
+}
+
+function confirmTransaction() {
+    if (JSON.parse(localStorage.getItem("dataUser")) != null) {
+    
+        let dataUserInfo = JSON.parse(localStorage.getItem("dataUser"))
+        console.log(dataUserInfo)
+        console.log(dataUserInfo[0])
         var settings = {
             "url": "https://api.mercadopago.com/checkout/preferences?category=electronica&time=today",
             "method": "POST",
             "timeout": 0,
             "headers": {
-              "Authorization": "Bearer TEST-8185104588992061-031600-2309f6db3ee8a481ca32af989dba4a3c-207187455",
-              "Content-Type": "application/json"
+                "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386",
+                "Content-Type": "application/json"
             },
-            // "data": JSON.stringify({"items":[{"title":"Disco sólido interno Kingston SA400S37/480G 480GB"}]    }),
-            "data": JSON.stringify({"items":shoppingCartForMercadoPago()}), 
-          };
-          
-          $.ajax(settings).done(function (response) {
-            document.getElementById("contenedor-de-filas-carrito").innerHTML=  `<div> <h2> link para terminar la operación: <a href="${response.init_point}"> Mercado pago link </a> </h2>  <button onclick='checkCorrectTransaction()'>chequear si se realizó la compra </button> </div>`
+
+            "data": JSON.stringify({
+                "items": shoppingCartForMercadoPago(),
+                "back_urls": {
+                    "success": "",
+                    "pending": "",
+                    "failure": ""
+                },
+                "payer": {
+                    "name": dataUserInfo[0],
+                    "surname": dataUserInfo[1],
+                    "email": dataUserInfo[3],
+                    "identification": {
+                        "type": "DNI",
+                        "number": dataUserInfo[2]
+                    }
+                }
+
+            }),
+        }
+
+        $.ajax(settings).done(function (response) {
+            console.log(response)
+            document.getElementById("contenedor-de-filas-carrito").innerHTML = `<div> <h2> link para terminar la operación: <button> <a href="${response.init_point}"> Mercado pago link </a> </button> </div> </h2> `
         });
+
+    } else {
+        addSentence()
+    }
 }
 let usuario = []
 let password = []
 let shoppingCart = [];
 let logInVariable = [];
-let dataUser=[];
-let paysQuantity=[0]
+let dataUser = [];
+let paysQuantity = [0]
 
-if (localStorage.getItem("dataUser") != null && imInCreateUser()) {
+if (JSON.parse(localStorage.getItem("dataUser")) != null && imInCreateUser()) {
     dataUser = JSON.parse(localStorage.getItem("dataUser"));
-    document.getElementById("createUser").innerHTML= `<label>Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a>`;
-}else if(localStorage.getItem("dataUser")!=null){
+    console.log(localStorage.getItem("dataUser"))
+    console.log("entre por aca")
+    document.getElementById("createUser").innerHTML = `<label>
+    Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a></label>  <br>        
+<label>  PODES cerrar SESION <a onclick='logOut()' href="index.html">  Cerrar sesión </a></label>
+`;
+} else if (JSON.parse(localStorage.getItem("dataUser")) != null) {
     dataUser = JSON.parse(localStorage.getItem("dataUser"));
 }
-if (localStorage.getItem("usuario") != null) {
+if (JSON.parse(localStorage.getItem("usuario")) != null) {
     shoppingCart = JSON.parse(localStorage.getItem("usuario"));
 }
-if (localStorage.getItem("password") != null) {
+if (JSON.parse(localStorage.getItem("password")) != null) {
     shoppingCart = JSON.parse(localStorage.getItem("password"));
 }
-if (localStorage.getItem("shoppingCart") != null) {
+if (JSON.parse(localStorage.getItem("shoppingCart")) != null) {
     shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
 }
 showCardsIndex();
