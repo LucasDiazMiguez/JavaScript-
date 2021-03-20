@@ -333,7 +333,7 @@ function takingDataUserAndCheck() {
         localStorage.setItem("dataUser", JSON.stringify(dataUser))
         console.log(dataUser);
         setTimeout(function userCreated() {
-            document.getElementById("createUser").innerHTML =`<label>
+            document.getElementById("createUser").innerHTML = `<label>
             Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a></label>  <br>        
         <label>  PODES cerrar SESION <a onclick='logOut()' href="index.html">  Cerrar sesión </a></label>
         `
@@ -350,29 +350,71 @@ function showUserPurchases() {
             "method": "GET",
             "timeout": 0,
             "headers": {
-                "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386"
+                "Authorization": "Bearer TEST-3353564952546638-032013-035001d209bedc95b5f31cd8f34f00ed-731599985"
             },
         };
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
-            let dataUserInfo = JSON.parse(localStorage.getItem("dataUser"))
-            //  for (let i = 20; i < response.results.length-1; i++) {
-// TODO resulta que si pagsas con tarjeta o con efectivoz cambia la respuesta de get pago, la otra que podemos hacer es limitar solo a un medio de pago
+                console.log(response);
+                let dataUserInfo = JSON.parse(localStorage.getItem("dataUser"))
+                document.getElementById("contenedor-de-filas-carrito").innerHTML =`<div> <h1>  only works when the user pays with credit card </h1> </div>  `+`<div> <h1>  only works when the user pays with credit card </h1> </div>  `
+                let aux=""
 
-                // console.log(response.results[i].additional_info.payer.last_name + "apellido de respuesta pag")
-                // console.log(dataUserInfo[1])
-                // console.log(response.results[i].additional_info.payer.first_name)
-                // console.log(dataUserInfo[0])
-                // if (response.results[i].additional_info.payer.last_name == dataUserInfo[1] && response.results[i].additional_info.payer.first_name == dataUserInfo[0]) {
-                //      console.log("im in")
-                //  }
+                for (let i = 0; i < response.results.length; i++) {
 
-            // }
+                    if (response.results[i].card.cardholder != null && response.results[i].card.cardholder != "undefined") {
+                        
+                        if (response.results[i].card.cardholder.identification.number == dataUserInfo[2]) {
+                        console.log(response.results[i].card.cardholder.identification.number)
+                        console.log( response.results[i].id)
+                        console.log(i)
+                            aux = aux +
+                            `<div> <h3> fecha de aprobación: ${response.results[i].date_approved} </h3> </div>  `+
+                            `<div> <h3> descripción de los productos:  ${response.results[i].description}  </h3> </div>  `+
+                            `<div> <h3> id para buscar el producto:  ${response.results[i].id} </h3> </div> `+
+                            `<div> <h3> nombre del comprador: ${response.results[i].payer.first_name} </h3> </div>`+
+                            `<div> <h3> apellido del comprador:  ${response.results[i].payer.last_name} </h3> </div> `+
+                            `<div> <h3> mail del comprador:  ${response.results[i].payer.email} </h3> </div>` +
+                            `<div> <h3> estado de la compra: ${response.results[i].status} </h3> </div> `+
+                            `<div> <h3> items   </h3> `
+
+
+                            console.log(response.results[i].additional_info.items.length)
+                            for (let j = 0; j < response.results[i].additional_info.items.length; j++) {
+                                
+                                
+                              aux=aux + `<ul> 
+                               <li> Descripción del producto: ${response.results[i].additional_info.items[j].description}</li>
+
+                               <li> ID del producto:  ${response.results[i].additional_info.items[j].id}</li>
+
+                               <li>  Cantidad: ${response.results[i].additional_info.items[j].quantity}</li>
+
+                               <li> titulo del prodycto: ${response.results[i].additional_info.items[j].title}</li>
+
+                               <li> Precio por unidad: ${response.results[i].additional_info.items[j].unit_price}</li>
+  
+                               <li> Precio total: ${(response.results[i].additional_info.items[j].unit_price)*(response.results[i].additional_info.items[j].quantity)}</li>
+
+                              </ul>`
+                            }
+                                
+
+                            }   
+                       
+                        }
+                    }
+                        
+                
+                
+                
+                document.getElementById("contenedor-de-filas-carrito").innerHTML =  `<div> <h1>  only works when the user pays with credit card </h1> </div>  `+ aux 
+
+            
         });
-    } else {
-        addSentence()
-    }
+} else {
+    addSentence()
+}
 }
 
 function shoppingCartForMercadoPago() {
@@ -409,7 +451,7 @@ function addSentence() {
 
 function confirmTransaction() {
     if (JSON.parse(localStorage.getItem("dataUser")) != null) {
-    
+
         let dataUserInfo = JSON.parse(localStorage.getItem("dataUser"))
         console.log(dataUserInfo)
         console.log(dataUserInfo[0])
@@ -418,7 +460,7 @@ function confirmTransaction() {
             "method": "POST",
             "timeout": 0,
             "headers": {
-                "Authorization": "Bearer TEST-7751386152269221-031721-e1164d48bb841513cd421cd945b2f7a7-730370386",
+                "Authorization": "Bearer TEST-3353564952546638-032013-035001d209bedc95b5f31cd8f34f00ed-731599985",
                 "Content-Type": "application/json"
             },
 
