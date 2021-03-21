@@ -1,11 +1,5 @@
-// TODO  We are going to save all the data of the page Crear Usuario in the localStorage. Then if the user logs out, he only needs the password and the user to log in.//when the user changes to a page like index or carrito, the iniciar sesión data deletes itself and u have to login again, but the user doesn´t know that(or I hope it doesn´t)
-// TODO make an if that says if the user is logged in
-// TODO usar funciones de array
-// TODO  iterar la respuesta devuelta por el  servidor con if que muestre las compras que pertenecen a el usuario 
-// TODO  after we show a tick animation and then we delete the shopping cart.
-// TODO  After we finished that we can add buttons to the step mentioned above for the user to travel between the form fields or to complete again the data loged in.
-// TODO after the user logs in we need to delete all the  acess to the  create user and log in page
-// TODO I disabled the email request and the goback url in the merado pago api for testing purposes 
+// TODO  recordar poner los link de vuelta a nuestra pagina cuando terminemos con todo
+
 class Products {
     constructor(price, stock, image, description, name, id, marca, cantidadAgregada) {
         this.price = price;
@@ -206,19 +200,19 @@ function showCarrito(shoppingCart) {
         }
         divDeCompra.innerHTML = aux +
             `<div class="row justify-content-around align-items-center fila__confirmar__pago">
-                        <div id="showUserPurchasesDiv" class="col-col-lg-7 p-3">
+                        <div id="showUserPurchasesDiv" class="col-lg-6  p-3">
                             <h3>
                                 <input onclick="showUserPurchases()" type="submit" value="Ver mis compras">
                             </h3>
                         </div>
-                        <div class="col-col-lg-3">
-                            <h3>TOTAL: ${preciototal} .-</h3>
+                        <div class="col-lg-3 col-md-3">
+                            <h3 class= "noWrap " > TOTAL: ${preciototal}.-       </h3>
                         </div>
-        <div id="confirmTransactionDiv" class="col-col-lg-2 p-3">
-            <h3>
-                <input onclick='confirmTransaction()' type="submit" value="Confirmar compra">
-            </h3>
-        </div>
+                        <div id="confirmTransactionDiv" class="col-lg-3  col-md-3 p-3">
+                            <h3>
+                                <input onclick='confirmTransaction()' type="submit" value="Confirmar compra">
+                            </h3>
+                        </div>
 
         </div>` +
          `<div id="mustInitiateFirst"   class="notShow"> <h3> Usted debe iniciar sesión primero!! <h3></div>`
@@ -230,8 +224,8 @@ function showCarrito(shoppingCart) {
         <div class="col-lg-8 fila__producto__eliminar__ignorar">
         </div>
         <div class="col-lg-7">
-            <h5> No hay ningún producto en el carrito. </h5>
-            <input onclick="showUserPurchases()" type="submit" value="Ver mis compras">
+            <h3> No hay ningún producto en el carrito. </h3>
+            <input class="bottonUniversalClass" onclick="showUserPurchases()" type="submit" value="Ver mis compras">
         </div>
     </div>`
     }
@@ -304,20 +298,20 @@ function takingDataUserAndCheck() {
         addCrossCreateUser("userAgeI");
         flag = 1;
     }
-    // if (userEmail.value.indexOf("@gmail.com") == -1) {
-    //     console.log("no es una dirección de gmail.com")
-    //     addCrossCreateUser("userEmailI");
-    //     flag = 1;
-    // } else {
-    //     //to see if the email is pedro@gmail.com and not @gmail.compedro 
-    //     let large = userEmail.value.length;
-    //     let largeminusemail = large - 10;
-    //     let gmailpart = userEmail.value.slice(largeminusemail);
-    //     if (gmailpart != "@gmail.com") {
-    //         addCrossCreateUser("userEmailI");
-    //         flag = 1;
-    //     }
-    // }
+    if (userEmail.value.indexOf("@gmail.com") == -1) {
+        console.log("no es una dirección de gmail.com")
+        addCrossCreateUser("userEmailI");
+        flag = 1;
+    } else {
+        //to see if the email is pedro@gmail.com and not @gmail.compedro 
+        let large = userEmail.value.length;
+        let largeminusemail = large - 10;
+        let gmailpart = userEmail.value.slice(largeminusemail);
+        if (gmailpart != "@gmail.com") {
+            addCrossCreateUser("userEmailI");
+            flag = 1;
+        }
+    }
     if (userNickname.value.length < 3) {
         addCrossCreateUser("userNicknameI");
         flag = 1;
@@ -341,15 +335,62 @@ function takingDataUserAndCheck() {
         localStorage.setItem("dataUser", JSON.stringify(dataUser))
         console.log(dataUser);
         setTimeout(function userCreated() {
-            document.getElementById("createUser").innerHTML = ` <div class="row">  <label class="whiteText">
-            <a class="forLink whiteText" href="iniciodesesion.html"><button class=" bottonUniversalClass whiteText iniciarSesion">Iniciar sesión</button></a></label></div>  <br>        
-            <div class="row"><label class="whiteText"> <a  class="forLink whiteText" onclick='logOut()' href=""><button class=" bottonUniversalClass whiteText iniciarSesion">  Cerrar sesión</button> </a></label></div>
-        `;
+            showUserData()
         }, 1000);
     }
 }
 
-function showUserPurchases() {
+function showUserData(){
+    dataUser = JSON.parse(localStorage.getItem("dataUser"));
+    document.getElementById("createUser").innerHTML = `
+    <div class="container">
+         <div class="row"> 
+            <h2 class="whiteText">
+                <a class="forLink whiteText" href="iniciodesesion.html">
+                        <button class=" bottonUniversalClass whiteText iniciarSesion">Iniciar sesión</button>
+                </a>
+            </h2>
+        </div> 
+        <div class="row">
+            <h2 class="whiteText"> 
+                <a  class="forLink whiteText" onclick='logOut()' href="">
+                    <button class=" bottonUniversalClass whiteText iniciarSesion">  Cerrar sesión</button>
+                </a>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-5 nowrap" >
+                <h2 for="nombreDeLaPersona">Nombre: ${dataUser[0]}</h2>
+            </div>
+            <div class="col-sm-5 nowrap " >
+                <h2 for="apellidoDeLaPersona">Apellido : ${dataUser[0]} </h2>
+            </div>
+        </div>
+        <div class="row ">
+        <div class="col-sm-5 nowrap ">
+            <h2 for="DNIDeLaPersona">DNI: ${dataUser[2]}</h2>
+        </div>
+        <div class="col-sm-5 nowrap ">
+            <h2 for="emailDeLaPersona">Email: ${dataUser[3]}</h2>
+        </div>
+        <div class="row ">
+            <div class="col-sm-5 nowrap ">
+                <h2 for="edadDeLaPersona">Edad ${dataUser[4]}</h2>
+            </div>
+            <div class="col-sm-5 nowrap">
+                <h2 for="nombreDeUsurioDeLaPersona">Nombre de Usuario: ${dataUser[5]}</h2>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    </div>
+`
+;
+}
+function showUserPurchases() { // solo funciona ccuando el usuario pago con tarjeta
     if (JSON.parse(localStorage.getItem("dataUser")) != null) {
 
 
@@ -365,26 +406,30 @@ function showUserPurchases() {
         $.ajax(settings).done(function (response) {
                 console.log(response);
                 let dataUserInfo = JSON.parse(localStorage.getItem("dataUser"))
-                document.getElementById("contenedor-de-filas-carrito").innerHTML =`<div> <h1>  only works when the user pays with credit card </h1> </div>  `+`<div> <h1>  only works when the user pays with credit card </h1> </div>  `
                 let aux=""
-
+                let boolean=0;
+                let cantidadDeCompras=0
                 for (let i = 0; i < response.results.length; i++) {
 
                     if (response.results[i].card.cardholder != null && response.results[i].card.cardholder != "undefined") {
                         
                         if (response.results[i].card.cardholder.identification.number == dataUserInfo[2]) {
-                        console.log(response.results[i].card.cardholder.identification.number)
+                            boolean=1;
+                            console.log(response.results[i].card.cardholder.identification.number)
                         console.log( response.results[i].id)
                         console.log(i)
+                        cantidadDeCompras++
                             aux = aux +
-                            `<div> <h3> fecha de aprobación: ${response.results[i].date_approved} </h3> </div>  `+
-                            `<div> <h3> descripción de los productos:  ${response.results[i].description}  </h3> </div>  `+
-                            `<div> <h3> id para buscar el producto:  ${response.results[i].id} </h3> </div> `+
-                            `<div> <h3> nombre del comprador: ${response.results[i].payer.first_name} </h3> </div>`+
-                            `<div> <h3> apellido del comprador:  ${response.results[i].payer.last_name} </h3> </div> `+
-                            `<div> <h3> mail del comprador:  ${response.results[i].payer.email} </h3> </div>` +
-                            `<div> <h3> estado de la compra: ${response.results[i].status} </h3> </div> `+
-                            `<div> <h3> items   </h3> `
+
+                            `<div> <h3> Compra número: ${cantidadDeCompras} </h3> </div> <div class="productCartCard"> `+
+                            `<div> <h5> Fecha de aprobación: ${response.results[i].date_approved} </h5> </div>  `+
+                            `<div> <h5> Descripción de los productos:  ${response.results[i].description}  </h5> </div>  `+
+                            `<div> <h5> ID para buscar el producto:  ${response.results[i].id} </h5> </div> `+
+                            `<div> <h5> Nombre del comprador: ${response.results[i].payer.first_name} </h5> </div>`+
+                            `<div> <h5> Apellido del comprador:  ${response.results[i].payer.last_name} </h5> </div> `+
+                            `<div> <h5> Mail del comprador:  ${response.results[i].payer.email} </h5> </div>` +
+                            `<div> <h5> Estado de la compra: ${response.results[i].status} </h5> </div> `+
+                            `<div> <h5> Items:   </h5> `
 
 
                             console.log(response.results[i].additional_info.items.length)
@@ -404,9 +449,9 @@ function showUserPurchases() {
   
                                <li> Precio total: ${(response.results[i].additional_info.items[j].unit_price)*(response.results[i].additional_info.items[j].quantity)}</li>
 
-                              </ul>`
+                              </ul> `
                             }
-                                
+                            aux=aux +`</div> </div>`
 
                             }   
                        
@@ -415,9 +460,13 @@ function showUserPurchases() {
                         
                 
                 
-                
-                document.getElementById("contenedor-de-filas-carrito").innerHTML =  `<div> <h1>  only works when the user pays with credit card </h1> </div>  `+ aux 
-
+                if (boolean==0) {
+                    document.getElementById("contenedor-de-filas-carrito").innerHTML =`<h2> El usuario no realizó ninguna compra con tarjeta.</h2> 
+                    <button class="bottonUniversalClass"> <a class=" forLink"href=""> carrito </a> </button> 
+                    `    
+                }else{
+                    document.getElementById("contenedor-de-filas-carrito").innerHTML =  aux
+                }
             
         });
 } else {
@@ -475,9 +524,9 @@ function confirmTransaction() {
             "data": JSON.stringify({
                 "items": shoppingCartForMercadoPago(),
                 "back_urls": {
-                    "success": "",
+                    "success": "https://java-script-coderhouse-ogedswdug-lucasdiazmiguez.vercel.app/",
                     "pending": "",
-                    "failure": ""
+                    "failure": "https://java-script-coderhouse-ogedswdug-lucasdiazmiguez.vercel.app/"
                 },
                 "payer": {
                     "name": dataUserInfo[0],
@@ -494,7 +543,7 @@ function confirmTransaction() {
 
         $.ajax(settings).done(function (response) {
             console.log(response)
-            document.getElementById("contenedor-de-filas-carrito").innerHTML = `<div> <h2> link para terminar la operación: <button> <a href="${response.init_point}"> Mercado pago link </a> </button> </div> </h2> `
+            document.getElementById("contenedor-de-filas-carrito").innerHTML = `<div> <h2> link para terminar la operación: <button> <a class="forLink" href="${response.init_point}"> Mercado pago link </a> </button> </div> </h2> `
         });
 
     } else {
@@ -509,11 +558,7 @@ let dataUser = [];
 let paysQuantity = [0]
 
 if (JSON.parse(localStorage.getItem("dataUser")) != null && imInCreateUser()) {
-    dataUser = JSON.parse(localStorage.getItem("dataUser"));
-    document.getElementById("createUser").innerHTML = ` <div class="row">  <label class="whiteText">
-    <a class="forLink whiteText" href="iniciodesesion.html"><button class=" bottonUniversalClass whiteText iniciarSesion">Iniciar sesión</button></a></label></div>  <br>        
-    <div class="row"><label class="whiteText"> <a  class="forLink whiteText" onclick='logOut()' href=""><button class=" bottonUniversalClass whiteText iniciarSesion">  Cerrar sesión</button> </a></label></div>
-`;
+    showUserData()
 } else if (JSON.parse(localStorage.getItem("dataUser")) != null) {
     dataUser = JSON.parse(localStorage.getItem("dataUser"));
 }
