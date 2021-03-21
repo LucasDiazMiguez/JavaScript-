@@ -1,5 +1,5 @@
 // sass --watch scss/mi-scss.scss:css/stylesheet.css
-
+// d-flex align-items-center justify-content-center
 
 /*Variables de colores*/
 
@@ -1164,20 +1164,67 @@ section.lista-de-productos-big {
     }
 }
 
+// 
+// styles universales 
+a,
+a:hover {
+    color: inherit;
+    transition: 0.3s;
+}
+
+.bottonUniversalClass {
+    margin-left: 0;
+    border-radius: 7em;
+    outline: 0;
+    border: 2px solid #aaa;
+    background-color: rgb(0, 0, 0);
+    padding: 0.2em 1em;
+    box-shadow: 0 5px 10px 0px #0002;
+    transition: 0.7s;
+}
+
+.bottonUniversalClass:hover {
+    transition: 0.7s;
+    border-color: black;
+    color: red;
+    background-color: rgb(0, 0, 0);
+}
+
+.forLink {
+    background: none;
+    text-decoration: none;
+}
+
+
+.whiteText {
+    color: white;
+}
+
+
+
 .nostock {
     background-color: red;
     transition: 0.5s;
     margin: 5px;
     border-radius: 30px;
 }
-.agregarCarritoHover:hover{
-   
+
+
+
+.agregarCarritoHover:hover {
+
     scale: 1.1;
     transition: 0.2s;
 }
+
+
+
+
+
+
 // FOOOOTEEEER-------------------------------------------------------------
 footer {
-    margin-top: 200px;
+    margin-top: 50%;
     /* box-shadow: 10px 5px 10px 10px rgba(179, 184, 168, 0.333 ); */
     color: negro;
 
@@ -1262,17 +1309,7 @@ body.iniciodesesion {
                 box-shadow: 0 5px 10px 0px #0002;
             }
 
-            #conteiniciarsesion__form--submit {
-                margin-left: 0;
-            }
 
-            #conteiniciarsesion__form--submit:hover {
-                color: red;
-                font-weight: bold;
-                transition: 0.3s;
-                border-color: black;
-                background-color: black;
-            }
 
             .conteiniciarsesion__form__botones {
                 display: flex;
@@ -1288,17 +1325,15 @@ body.iniciodesesion {
                     text-decoration: none;
                     // padding: $padding10px;
                     border-radius: 10px;
-                    color: rgb(12, 11, 11);
+                    color: rgb(255, 255, 255);
                     padding: 2px;
 
-                }
-
-                a:hover {
-                    color: red;
-                    background-color: black;
-                    padding: 3px;
-                    text-decoration: none;
-                    transition: 0.3s;
+                    &:hover {
+                        color: white;
+                        background-color: black;
+                        text-decoration: none;
+                        transition: 0.3s;
+                    }
                 }
             }
         }
@@ -1378,14 +1413,16 @@ body.crearusuario {
         padding-bottom: 50px;
         color: white;
     }
-    .wrongField{
+
+    .wrongField {
         position: relative;
         top: -26px;
         right: -213px;
         color: white;
         scale: 1.4;
     }
-    .normalField{
+
+    .normalField {
         position: relative;
         top: -31px;
         right: -213px;
@@ -1394,6 +1431,7 @@ body.crearusuario {
         scale: 0.8;
         transition: 0.5s;
     }
+
     .contecrearusuario {
         border-radius: 10px;
         margin-top: 90px;
@@ -1491,7 +1529,6 @@ body.crearusuario {
             border-radius: 15px;
             color: $blanco;
             text-decoration: none;
-            width: 100%;
             @include Facebook();
 
 
@@ -1522,7 +1559,7 @@ body.crearusuario {
 }
 
 body.compras {
-    
+
     font-family: "Roboto", sans-serif;
     font-weight: bold;
     background-color: white;
@@ -1536,117 +1573,70 @@ body.compras {
         color: $negro;
         font-weight: bold;
     }
-    .show{
-        display: flex;
-        color:white;
-        justify-content: center;
+
+    h3 {
+        font-weight: bold;
+        color: black;
     }
-    .notShow{
-        display: none;
+
+    .show {
+        text-align: center;
+        opacity: 1;
+        padding: 10px;
+        border-radius: 5px;
+        background: red;
     }
+
+    .notShow {
+        opacity: 0;
+    }
+
     .contenedor-de-filas {
-        background-color: rgb(0, 0, 0);
         padding: 2px;
         border-radius: 5px;
 
-        .fila__producto__titulo {
-            h4 {
-                color: white;
-                padding-left: 70px;
-                padding-top: 35px;
-                border-radius: 10px;
-            }
+        img {
+            width: auto;
+            max-width: 250px;
+            height: 180px;
+
+            object-fit: contain;
+            object-position: center;
+            margin: auto;
+            border-radius: 10px;
         }
 
-
-        .fila__producto {
-            -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 15px 9px 26px 11px rgba(0, 0, 0, 0.46);
-            box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 15px 9px 26px 11px rgba(0, 0, 0, 0.46);
-
-            input {
-                border-radius: 2px;
+        .normal {
+            background-color: white;
+            height: 30px;
+            border-style: none;
+            transition: 0.5s;
+            border-radius: 30px;
+            &:hover {
+                background: black;
+                color: white;
             }
-
+        }
+        #deleteItemShoppingCart {
+            position: absolute;
+            scale: 2;
+            top: 10px;
+            right: 10px;
+            border-radius: 5px;
+            transition: 0.5s;
+            &:hover {
+                background: black;
+                color: white;
+            }
+        }
+        .fila__producto {
+            position: relative;
             background-color: $blanco;
             margin: 15px;
             border-radius: 10px;
-            font-size: 80%;
-
-            .fila__producto__eliminar__ignorar {
-                display: flex;
-                flex-direction: column;
-                flex-wrap: nowrap;
-
-                img {
-                    width: 120px;
-                    height: 120px;
-                    object-fit: contain;
-                    object-position: center;
-                    margin: 10px;
-                    justify-self: center;
-                    align-self: center;
-                    border-radius: 10px;
-                }
-
-                .checkboxes {
-                    align-self: center;
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: nowrap;
-                    border-width: 2px 0 0 0;
-                    border-style: solid;
-                    border-color: black;
-                    margin: -12px;
-
-                    .checkbox-sub {
-                        input {
-                            margin: 5px;
-                        }
-
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        align-content: center;
-                        flex-direction: row;
-                        margin: 10px;
-                        padding: 5px;
-
-                        @media screen and (max-width: 576px) {
-                            flex-wrap: wrap;
-                        }
-
-                        @media screen and (min-width: 576px) {
-                            flex-wrap: nowrap;
-                        }
-                    }
-                }
-            }
+            font-size: 60%;
 
             .fila__producto__numero__precio {
-                display: flex;
-                flex-wrap: nowrap;
-
-                div {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: nowrap;
-                    color: black;
-
-                    .normal {
-                        background-color: white;
-                        border-style: none;
-                        transition: 0.5s;
-                        margin: 5px;
-                        border-radius: 30px;
-                    }
-
-                    h5 {
-                        padding: 5px;
-                        margin-top: 10px;
-                    }
-
-                }
-
                 strong {
                     border-radius: 10px;
                     background-color: rgb(141, 6, 6);
@@ -1654,31 +1644,11 @@ body.compras {
                     white-space: nowrap;
                     color: white;
                 }
-
-                #deleteItemShoppingCart {
-                    position: relative;
-                    top: -10px;
-                    left: 84px;
-                    scale: 1.7;
-                    border-radius: 5px;
-                    padding: 5px;
-                    height: 24px;
-                    transition: 0.5s;
-
-                    &:hover {
-                        background: black;
-                        color: white;
-                    }
-                }
+             
             }
         }
 
         .fila__confirmar__pago {
-            h5 {
-                color: white;
-                white-space: nowrap;
-            }
-
             input {
                 border-style: none;
                 background-color: sienna;
@@ -1814,60 +1784,6 @@ body.inicio {
     }
 }
 
-body.notebooks {
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
-    background-color: white;
-    background-repeat: no-repeat;
-    background-size: cover;
-    // background-image: url("https://images.pexels.com/photos/92904/pexels-photo-92904.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
-    background-image: url("../imagenes/ImagenesNotebooks/fondodenotebooks.jpeg");
-
-    .contenido {
-        margin-top: 100px;
-    }
-
-    .container-de-filtros {
-        font-size: smaller;
-        margin-top: 24px;
-        padding: $padding10px;
-        width: 180px;
-        border-radius: 5px;
-        background-color: #fff;
-        color: black;
-        box-shadow: 0 5px 10px 0px #0002;
-        background-color: $blanco;
-        border-radius: 10px;
-
-        .filtros {
-            padding: 5px;
-        }
-
-        select,
-        input {
-            border-radius: 5px;
-            border: gray;
-            border-style: solid;
-        }
-    }
-
-    .box-gallery-item a {
-        height: 300px;
-
-        .marg-top {
-            margin-top: -30px;
-        }
-
-        h6.flotante {
-            font-size: smaller;
-        }
-
-        .galeria-precio {
-            top: 23px;
-        }
-    }
-
-}
 
 
 .sticky-top {

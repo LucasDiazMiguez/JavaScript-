@@ -101,7 +101,7 @@ function addCrossCreateUser(id) {
     setTimeout(function () {
         idi.classList.remove("wrongField");
         idi.classList.add("normalField");
-    }, 5000);
+    }, 3000);
 }
 
 function AddtoCart(product) {
@@ -174,47 +174,54 @@ function showCarrito(shoppingCart) {
         shoppingCart = JSON.parse(localStorage.getItem("shoppingCart"));
         let divDeCompra = document.getElementById("contenedor-de-filas-carrito");
         let preciototal = 0;
-        let aux = ` <h4>Productos en su carrito:</h4>`;
+        let aux = ` <h2>Productos en su carrito:</h2>`;
 
         for (let i = 0; i < shoppingCart.length; i++) {
             preciototal = preciototal + (shoppingCart[i].cantidadAgregada) * shoppingCart[i].price;
             aux = aux + `
-            <div class="row justify-content-around align-items-center fila__producto ">
-            <div class="col-lg-3 fila__producto__eliminar__ignorar">
-                <img src="${shoppingCart[i].image}" alt=" AMD Radeon 6800XT">
-            </div>
-            <div class="col-lg-5">
-                <h5 id="item-name"> ${shoppingCart[i].name} </h5>
-            </div>
-            <div class="col-lg-4 fila__producto__numero__precio">
-                <div>
-                    <button class="normal" onclick='deleteProduct(${JSON.stringify(shoppingCart[i])})'>
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <h5 >${shoppingCart[i].cantidadAgregada} </h5>
-                    <button id="${shoppingCart[i].id+"plusSign"}" class="normal" onclick='AddtoCart(${JSON.stringify(shoppingCart[i])})' ">
-                        <i class="fas fa-plus"></i>
-                    </button>
+            <div class="row fila__producto d-flex align-items-center justify-content-center  ">
+                <div class="col-lg-3 d-flex align-items-center justify-content-center">
+                    <img src="${shoppingCart[i].image}" alt=" AMD Radeon 6800XT">
                 </div>
-                <strong class="price"> Precio: ${shoppingCart[i].cantidadAgregada * shoppingCart[i].price}$ </strong>
-                <i id="deleteItemShoppingCart" class="fas fa-times" onclick='deleteAll(${JSON.stringify(shoppingCart[i])})'></i>
-            </div>
+                <div class="col-lg-5 d-flex  ">
+                    <h5 id="item-name"> ${shoppingCart[i].name} </h5>
+                </div>
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <div class=" d-flex align-items-center ">
+                        <div class=" d-flex pr-3 mr-3">
+                            <button class="normal   mt-1" onclick='deleteProduct(${JSON.stringify(shoppingCart[i])})'>
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <h5 class="p-2" >${shoppingCart[i].cantidadAgregada} </h5>
+                            <button  class="pl-2 pr-3 mt-1  normal" id="${shoppingCart[i].id+"plusSign"}"  onclick='AddtoCart(${JSON.stringify(shoppingCart[i])})' ">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <h5 style="margin-left: 52px;"><strong>    Precio: ${shoppingCart[i].cantidadAgregada * shoppingCart[i].price} $</strong> </h5>
+                    </div>
+                    <i id="deleteItemShoppingCart" class="fas fa-times m-3 p-1" onclick='deleteAll(${JSON.stringify(shoppingCart[i])})'></i>
+                </div>
             </div>
             `
         }
         divDeCompra.innerHTML = aux +
             `<div class="row justify-content-around align-items-center fila__confirmar__pago">
-        <div id="showUserPurchasesDiv" class="col-lg-5">
-        <input onclick="showUserPurchases()" type="submit" value="Ver mis compras">
-        </div>
-        <div class="col-lg-3">
-            <h5>TOTAL: ${preciototal} .-</h5>
-        </div>
-        <div id="confirmTransactionDiv" class="col-lg-3">
-            <input onclick='confirmTransaction()' type="submit" value="Confirmar compra">
+                        <div id="showUserPurchasesDiv" class="col-col-lg-7 p-3">
+                            <h3>
+                                <input onclick="showUserPurchases()" type="submit" value="Ver mis compras">
+                            </h3>
+                        </div>
+                        <div class="col-col-lg-3">
+                            <h3>TOTAL: ${preciototal} .-</h3>
+                        </div>
+        <div id="confirmTransactionDiv" class="col-col-lg-2 p-3">
+            <h3>
+                <input onclick='confirmTransaction()' type="submit" value="Confirmar compra">
+            </h3>
         </div>
 
-        </div>` + `<div id="mustInitiateFirst"  class="notShow row justify-content-around align-items-center fila__confirmar__pago"> <h3> usted debe iniciar sesión primero. </div>`
+        </div>` +
+         `<div id="mustInitiateFirst"   class="notShow"> <h3> Usted debe iniciar sesión primero!! <h3></div>`
     }
     if (shoppingCart.length == 0) {
         // console.log("entre al else del showcarrito")
@@ -263,7 +270,7 @@ function initiateSesion() {
     if (userNickname != dataUser[5] || userPassword != dataUser[6]) {
         console.log("usuario o contraseña erróneas")
     } else {
-        document.getElementById("iniatiateSesion").innerHTML = ` <h1>iniciaste sesion        <i class="fas fa-user-check"></i> <a href="index.html"></a></h1>`
+        document.getElementById("iniatiateSesion").innerHTML = ` <h1 class="whiteText" >iniciaste sesion        <i class="fas fa-user-check"></i> <a href="index.html"></a></h1>`
     }
 }
 
@@ -326,17 +333,18 @@ function takingDataUserAndCheck() {
     }
     console.log(flag)
     if (flag == 1) {
-        document.getElementById("botondeCrearUsuario").style.background = "red";
+        addCrossCreateUser("bottonCrearUsarioI")
     } else {
         document.getElementById("botondeCrearUsuario").style.background = "green";
+        document.getElementById("botondeCrearUsuario").style.color = "black";
         dataUser = [newUser.value, userSurname.value, userDni.value, userEmail.value, userAge.value, userNickname.value, userPassword1.value, userPassword2.value]
         localStorage.setItem("dataUser", JSON.stringify(dataUser))
         console.log(dataUser);
         setTimeout(function userCreated() {
-            document.getElementById("createUser").innerHTML = `<label>
-            Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a></label>  <br>        
-        <label>  PODES cerrar SESION <a onclick='logOut()' href="index.html">  Cerrar sesión </a></label>
-        `
+            document.getElementById("createUser").innerHTML = ` <div class="row">  <label class="whiteText">
+            <a class="forLink whiteText" href="iniciodesesion.html"><button class=" bottonUniversalClass whiteText iniciarSesion">Iniciar sesión</button></a></label></div>  <br>        
+            <div class="row"><label class="whiteText"> <a  class="forLink whiteText" onclick='logOut()' href=""><button class=" bottonUniversalClass whiteText iniciarSesion">  Cerrar sesión</button> </a></label></div>
+        `;
         }, 1000);
     }
 }
@@ -350,7 +358,7 @@ function showUserPurchases() {
             "method": "GET",
             "timeout": 0,
             "headers": {
-                "Authorization": "Bearer TEST-3353564952546638-032013-035001d209bedc95b5f31cd8f34f00ed-731599985"
+                "Authorization": "Bearer TEST-8185104588992061-031600-2309f6db3ee8a481ca32af989dba4a3c-207187455"
             },
         };
 
@@ -460,7 +468,7 @@ function confirmTransaction() {
             "method": "POST",
             "timeout": 0,
             "headers": {
-                "Authorization": "Bearer TEST-3353564952546638-032013-035001d209bedc95b5f31cd8f34f00ed-731599985",
+                "Authorization": "Bearer TEST-8185104588992061-031600-2309f6db3ee8a481ca32af989dba4a3c-207187455",
                 "Content-Type": "application/json"
             },
 
@@ -502,11 +510,9 @@ let paysQuantity = [0]
 
 if (JSON.parse(localStorage.getItem("dataUser")) != null && imInCreateUser()) {
     dataUser = JSON.parse(localStorage.getItem("dataUser"));
-    console.log(localStorage.getItem("dataUser"))
-    console.log("entre por aca")
-    document.getElementById("createUser").innerHTML = `<label>
-    Ya podés iniciar sesión <a href="iniciodesesion.html">Iniciar sesión</a></label>  <br>        
-<label>  PODES cerrar SESION <a onclick='logOut()' href="index.html">  Cerrar sesión </a></label>
+    document.getElementById("createUser").innerHTML = ` <div class="row">  <label class="whiteText">
+    <a class="forLink whiteText" href="iniciodesesion.html"><button class=" bottonUniversalClass whiteText iniciarSesion">Iniciar sesión</button></a></label></div>  <br>        
+    <div class="row"><label class="whiteText"> <a  class="forLink whiteText" onclick='logOut()' href=""><button class=" bottonUniversalClass whiteText iniciarSesion">  Cerrar sesión</button> </a></label></div>
 `;
 } else if (JSON.parse(localStorage.getItem("dataUser")) != null) {
     dataUser = JSON.parse(localStorage.getItem("dataUser"));

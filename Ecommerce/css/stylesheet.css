@@ -816,6 +816,39 @@ section.lista-de-productos-small .lista-de-productos-small-container button.boto
     display: none;
   }
 }
+a,
+a:hover {
+  color: inherit;
+  transition: 0.3s;
+}
+
+.bottonUniversalClass {
+  margin-left: 0;
+  border-radius: 7em;
+  outline: 0;
+  border: 2px solid #aaa;
+  background-color: black;
+  padding: 0.2em 1em;
+  box-shadow: 0 5px 10px 0px #0002;
+  transition: 0.7s;
+}
+
+.bottonUniversalClass:hover {
+  transition: 0.7s;
+  border-color: black;
+  color: red;
+  background-color: black;
+}
+
+.forLink {
+  background: none;
+  text-decoration: none;
+}
+
+.whiteText {
+  color: white;
+}
+
 .nostock {
   background-color: red;
   transition: 0.5s;
@@ -829,7 +862,7 @@ section.lista-de-productos-small .lista-de-productos-small-container button.boto
 }
 
 footer {
-  margin-top: 200px;
+  margin-top: 50%;
   /* box-shadow: 10px 5px 10px 10px rgba(179, 184, 168, 0.333 ); */
   color: negro;
   background: #f0f3f5;
@@ -893,16 +926,6 @@ body.iniciodesesion .conteiniciarsesion .conteiniciarsesion__form input {
 body.iniciodesesion .conteiniciarsesion .conteiniciarsesion__form input:focus {
   border-color: black;
 }
-body.iniciodesesion .conteiniciarsesion .conteiniciarsesion__form #conteiniciarsesion__form--submit {
-  margin-left: 0;
-}
-body.iniciodesesion .conteiniciarsesion .conteiniciarsesion__form #conteiniciarsesion__form--submit:hover {
-  color: red;
-  font-weight: bold;
-  transition: 0.3s;
-  border-color: black;
-  background-color: black;
-}
 body.iniciodesesion .conteiniciarsesion .conteiniciarsesion__form .conteiniciarsesion__form__botones {
   display: flex;
   flex-direction: row;
@@ -916,13 +939,12 @@ body.iniciodesesion .conteiniciarsesion .conteiniciarsesion__form .conteiniciars
   margin-left: 15px;
   text-decoration: none;
   border-radius: 10px;
-  color: #0c0b0b;
+  color: white;
   padding: 2px;
 }
 body.iniciodesesion .conteiniciarsesion .conteiniciarsesion__form .conteiniciarsesion__form__botones a:hover {
-  color: red;
+  color: white;
   background-color: black;
-  padding: 3px;
   text-decoration: none;
   transition: 0.3s;
 }
@@ -1164,7 +1186,6 @@ body.crearusuario .conteiniciarsesion__con .conteiniciarsesion__con__facebook {
   border-radius: 15px;
   color: white;
   text-decoration: none;
-  width: 100%;
 }
 @media screen and (min-width: 480px) {
   body.crearusuario .conteiniciarsesion__con .conteiniciarsesion__con__facebook {
@@ -1229,103 +1250,62 @@ body.compras #item-name {
   color: Black;
   font-weight: bold;
 }
+body.compras h3 {
+  font-weight: bold;
+  color: black;
+}
 body.compras .show {
-  display: flex;
-  color: white;
-  justify-content: center;
+  text-align: center;
+  opacity: 1;
+  padding: 10px;
+  border-radius: 5px;
+  background: red;
 }
 body.compras .notShow {
-  display: none;
+  opacity: 0;
 }
 body.compras .contenedor-de-filas {
-  background-color: black;
   padding: 2px;
   border-radius: 5px;
 }
-body.compras .contenedor-de-filas .fila__producto__titulo h4 {
-  color: white;
-  padding-left: 70px;
-  padding-top: 35px;
+body.compras .contenedor-de-filas img {
+  width: auto;
+  max-width: 250px;
+  height: 180px;
+  object-fit: contain;
+  object-position: center;
+  margin: auto;
   border-radius: 10px;
 }
+body.compras .contenedor-de-filas .normal {
+  background-color: white;
+  height: 30px;
+  border-style: none;
+  transition: 0.5s;
+  border-radius: 30px;
+}
+body.compras .contenedor-de-filas .normal:hover {
+  background: black;
+  color: white;
+}
+body.compras .contenedor-de-filas #deleteItemShoppingCart {
+  position: absolute;
+  scale: 2;
+  top: 10px;
+  right: 10px;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+body.compras .contenedor-de-filas #deleteItemShoppingCart:hover {
+  background: black;
+  color: white;
+}
 body.compras .contenedor-de-filas .fila__producto {
-  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 15px 9px 26px 11px rgba(0, 0, 0, 0.46);
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 15px 9px 26px 11px rgba(0, 0, 0, 0.46);
+  position: relative;
   background-color: white;
   margin: 15px;
   border-radius: 10px;
-  font-size: 80%;
-}
-body.compras .contenedor-de-filas .fila__producto input {
-  border-radius: 2px;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__eliminar__ignorar {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__eliminar__ignorar img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  object-position: center;
-  margin: 10px;
-  justify-self: center;
-  align-self: center;
-  border-radius: 10px;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__eliminar__ignorar .checkboxes {
-  align-self: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  border-width: 2px 0 0 0;
-  border-style: solid;
-  border-color: black;
-  margin: -12px;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__eliminar__ignorar .checkboxes .checkbox-sub {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  flex-direction: row;
-  margin: 10px;
-  padding: 5px;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__eliminar__ignorar .checkboxes .checkbox-sub input {
-  margin: 5px;
-}
-@media screen and (max-width: 576px) {
-  body.compras .contenedor-de-filas .fila__producto .fila__producto__eliminar__ignorar .checkboxes .checkbox-sub {
-    flex-wrap: wrap;
-  }
-}
-@media screen and (min-width: 576px) {
-  body.compras .contenedor-de-filas .fila__producto .fila__producto__eliminar__ignorar .checkboxes .checkbox-sub {
-    flex-wrap: nowrap;
-  }
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio {
-  display: flex;
-  flex-wrap: nowrap;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  color: black;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div .normal {
-  background-color: white;
-  border-style: none;
-  transition: 0.5s;
-  margin: 5px;
-  border-radius: 30px;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio div h5 {
-  padding: 5px;
-  margin-top: 10px;
+  font-size: 60%;
 }
 body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio strong {
   border-radius: 10px;
@@ -1333,24 +1313,6 @@ body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__preci
   padding: 10px;
   white-space: nowrap;
   color: white;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio #deleteItemShoppingCart {
-  position: relative;
-  top: -10px;
-  left: 84px;
-  scale: 1.7;
-  border-radius: 5px;
-  padding: 5px;
-  height: 24px;
-  transition: 0.5s;
-}
-body.compras .contenedor-de-filas .fila__producto .fila__producto__numero__precio #deleteItemShoppingCart:hover {
-  background: black;
-  color: white;
-}
-body.compras .contenedor-de-filas .fila__confirmar__pago h5 {
-  color: white;
-  white-space: nowrap;
 }
 body.compras .contenedor-de-filas .fila__confirmar__pago input {
   border-style: none;
@@ -1469,51 +1431,6 @@ body.inicio .products-pictures h3 {
   text-align: center;
   font-size: xx-large;
   font-family: "Anton", sans-serif;
-}
-
-body.notebooks {
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url("../imagenes/ImagenesNotebooks/fondodenotebooks.jpeg");
-}
-body.notebooks .contenido {
-  margin-top: 100px;
-}
-body.notebooks .container-de-filtros {
-  font-size: smaller;
-  margin-top: 24px;
-  padding: 10px;
-  width: 180px;
-  border-radius: 5px;
-  background-color: #fff;
-  color: black;
-  box-shadow: 0 5px 10px 0px #0002;
-  background-color: white;
-  border-radius: 10px;
-}
-body.notebooks .container-de-filtros .filtros {
-  padding: 5px;
-}
-body.notebooks .container-de-filtros select,
-body.notebooks .container-de-filtros input {
-  border-radius: 5px;
-  border: gray;
-  border-style: solid;
-}
-body.notebooks .box-gallery-item a {
-  height: 300px;
-}
-body.notebooks .box-gallery-item a .marg-top {
-  margin-top: -30px;
-}
-body.notebooks .box-gallery-item a h6.flotante {
-  font-size: smaller;
-}
-body.notebooks .box-gallery-item a .galeria-precio {
-  top: 23px;
 }
 
 .sticky-top {
