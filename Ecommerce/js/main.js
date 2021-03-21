@@ -227,6 +227,8 @@ function showCarrito(shoppingCart) {
             <h3> No hay ningún producto en el carrito. </h3>
             <input class="bottonUniversalClass" onclick="showUserPurchases()" type="submit" value="Ver mis compras">
         </div>
+        +
+        <div id="mustInitiateFirst"   class="notShow"> <h3> Usted debe iniciar sesión primero!! <h3></div>
     </div>`
     }
 }
@@ -409,6 +411,7 @@ function showUserPurchases() { // solo funciona ccuando el usuario pago con tarj
                 let aux=""
                 let boolean=0;
                 let cantidadDeCompras=0
+                console.log(response)
                 for (let i = 0; i < response.results.length; i++) {
 
                     if (response.results[i].card.cardholder != null && response.results[i].card.cardholder != "undefined") {
