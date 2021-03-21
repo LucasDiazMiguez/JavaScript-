@@ -527,9 +527,9 @@ function confirmTransaction() {
             "data": JSON.stringify({
                 "items": shoppingCartForMercadoPago(),
                 "back_urls": {
-                    "success": "https://java-script-coderhouse-ogedswdug-lucasdiazmiguez.vercel.app/",
+                    "success": "https://java-script-coderhouse.vercel.app/compras.html",
                     "pending": "",
-                    "failure": "https://java-script-coderhouse-ogedswdug-lucasdiazmiguez.vercel.app/"
+                    "failure": "https://java-script-coderhouse.vercel.app/compras.html"
                 },
                 "payer": {
                     "name": dataUserInfo[0],
