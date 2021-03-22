@@ -48,7 +48,8 @@ function cardCarusel(id, items) {
                 alt="${items[i].description}">
             <h6 class="item-name">${items[i].name}</h6>
             <h6 class="cardprice">$ ${items[i].price} </h6>
-            <button id="${idb}"value="" class="agregarCarritoHover"  onclick='AddtoCart(${JSON.stringify(items[i])})'>agregar al carrito <i id="${idi}" class="fas fa-check normal"></i></button>
+            <button id="${idb}"value="" class="agregarCarritoHover"  onclick='AddtoCart(${JSON.stringify(items[i])})'>agregar al carrito </button>
+            <i id="${idi}" class="fas fa-check normal"></i>
         </div>
         </div>
             `;
@@ -546,7 +547,7 @@ function confirmTransaction() {
 
         $.ajax(settings).done(function (response) {
             console.log(response)
-            document.getElementById("contenedor-de-filas-carrito").innerHTML = `<div> <h2> link para terminar la operación: <button> <a class="forLink" href="${response.init_point}"> Mercado pago link </a> </button> </div> </h2> `
+            document.getElementById("contenedor-de-filas-carrito").innerHTML = `<div> <h2> Ingrese al siguiente link para finalizar la operación: <br> <br> <button> <a class="forLink" href="${response.init_point}"> Mercado pago link </a> </button> </div> </h2> `
         });
 
     } else {

@@ -38,38 +38,19 @@
   }
 }
 @keyframes addToCartCheck {
-  0% {
-    background-color: red;
-    color: white;
-    scale: 1.4;
+  from {
+    scale: 1.1;
+    color: verde;
   }
-  25% {
-    background-color: yellow;
-    color: black;
-    transform: rotate(180deg);
-    scale: 1.8;
-  }
-  50% {
-    background-color: blue;
-    color: green;
-    transform: rotate(270deg);
-    scale: 2.2;
-  }
-  75% {
-    background-color: green;
-    color: blue;
-    transform: rotate(360deg);
+  to {
     scale: 3;
-  }
-  100% {
-    scale: 1;
+    color: black;
   }
 }
 .animation-class {
   opacity: 1;
   animation-name: addToCartCheck;
   animation-duration: 2s;
-  transition: 0.5s;
   transform: translate(0, 0);
   transform: rotate(0);
   scale: 1.2;
@@ -79,6 +60,14 @@
 .box {
   box-shadow: 1px 1px 15px 0px rgba(0, 0, 0, 0.73);
   border-radius: 10px;
+}
+.box .box-gallery-item .normal {
+  opacity: 0;
+  color: black;
+  transform: rotate(150);
+  transform: translate(50px, -100px);
+  border-radius: 5px;
+  scale: 0.7;
 }
 .box .box-gallery-item div {
   position: relative;
@@ -110,14 +99,6 @@
   background-color: #000000;
   font-weight: bold;
   border-radius: 10px;
-}
-.box .box-gallery-item div button .normal {
-  opacity: 0;
-  color: black;
-  transform: rotate(150);
-  transform: translate(50px, -100px);
-  border-radius: 5px;
-  scale: 0.7;
 }
 .box .box-gallery-item div .cardprice {
   font-weight: bold;
@@ -1080,8 +1061,8 @@ body.crearusuario h2 {
 }
 body.crearusuario .wrongField {
   position: relative;
-  top: -26px;
-  right: -213px;
+  top: -25px;
+  right: -250px;
   color: white;
   scale: 1.4;
 }
