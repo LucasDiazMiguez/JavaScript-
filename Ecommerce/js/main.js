@@ -216,7 +216,7 @@ function showCarrito(shoppingCart) {
                         </div>
 
         </div>` +
-         `<div id="mustInitiateFirst"   class="notShow"> <h3> Usted debe iniciar sesión primero!! <h3></div>`
+         `<div id="mustInitiateFirst"   class="notShow"> <h3> Inicie sesión para continuar <h3></div>`
     }
     if (shoppingCart.length == 0) {
         // console.log("entre al else del showcarrito")
