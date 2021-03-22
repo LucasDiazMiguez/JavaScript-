@@ -427,11 +427,10 @@ function showUserPurchases() { // solo funciona ccuando el usuario pago con tarj
 
                             `<div> <h3> Compra número: ${cantidadDeCompras} </h3> </div> <div class="productCartCard"> `+
                             `<div> <h5> Fecha de aprobación: ${response.results[i].date_approved} </h5> </div>  `+
-                            `<div> <h5> Descripción de los productos:  ${response.results[i].description}  </h5> </div>  `+
-                            `<div> <h5> ID para buscar el producto:  ${response.results[i].id} </h5> </div> `+
-                            `<div> <h5> Nombre del comprador: ${response.results[i].payer.first_name} </h5> </div>`+
-                            `<div> <h5> Apellido del comprador:  ${response.results[i].payer.last_name} </h5> </div> `+
-                            `<div> <h5> Mail del comprador:  ${response.results[i].payer.email} </h5> </div>` +
+                            `<div> <h5> ID para buscar la compra:  ${response.results[i].id} </h5> </div> `+
+                            `<div> <h5> Nombre del comprador: ${dataUserInfo[0]} </h5> </div>`+
+                            `<div> <h5> Apellido del comprador: ${dataUserInfo[1]} </h5> </div> `+
+                            `<div> <h5> Mail del comprador:  ${dataUserInfo[2]} </h5> </div>` +
                             `<div> <h5> Estado de la compra: ${response.results[i].status} </h5> </div> `+
                             `<div> <h5> Items:   </h5> `
 
